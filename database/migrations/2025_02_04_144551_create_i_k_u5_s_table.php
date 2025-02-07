@@ -15,7 +15,6 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name')->nullable();
             $table->string('nip')->nullable();
-            // $table->foreignUuid('select_id')->nullable();
             $table->string('activity_type')->nullable();
             $table->text('summary')->nullable();
             $table->text('description')->nullable();

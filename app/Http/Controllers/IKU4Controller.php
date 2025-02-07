@@ -144,7 +144,7 @@ class IKU4Controller extends Controller
         });
 
         return HelperPublic::export(
-            'Data Indikator Kinerja Utama 1',
+            'Data Indikator Kinerja Utama 4',
             'Lulusan berhasil mendapat pekerjaan yang layak, melanjutkan studi, atau menjadi wiraswasta.',
             $headers,
             $dataIKU);
