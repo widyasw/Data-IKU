@@ -59,16 +59,7 @@
                                             <tr>
                                                 <td class="table-td">{{ $key + 1 }}</td>
                                                 <td class="table-td">
-                                                    <span class="flex">
-                                                        <span class="w-7 h-7 rounded-full ltr:mr-3 rtl:ml-3 flex-none">
-                                                            <img src="{{ Storage::url($user->profile_photo) }}"
-                                                                alt="{{ $user->name }}"
-                                                                class="object-cover w-full h-full rounded-full">
-                                                        </span>
-                                                        <span class="text-sm text-slate-600 dark:text-slate-300 capitalize">
-                                                            {{ $user->name }}
-                                                        </span>
-                                                    </span>
+                                                    {{ $user->name }}
                                                 </td>
                                                 <td class="table-td"><a
                                                         href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>

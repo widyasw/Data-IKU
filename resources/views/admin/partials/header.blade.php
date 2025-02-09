@@ -14,12 +14,6 @@
                         icon="heroicons-outline:menu-alt-3"></iconify-icon>
                 </button>
                 <h5>{{ $title ?? 'Dashboard'}}</h5>
-                {{-- <button
-                    class="flex items-center xl:text-sm text-lg xl:text-slate-400 text-slate-800 dark:text-slate-300 px-1 rtl:space-x-reverse search-modal"
-                    data-bs-toggle="modal" data-bs-target="#searchModal">
-                    <iconify-icon icon="heroicons-outline:search"></iconify-icon>
-                    <span class="xl:inline-block hidden ml-3">Search... </span>
-                </button> --}}
             </div>
             <!-- end vertcial -->
             <div class="items-center space-x-4 rtl:space-x-reverse horizental-box">
@@ -44,61 +38,6 @@
             <!-- end horizental -->
 
             <div class="nav-tools flex items-center lg:space-x-5 space-x-3 rtl:space-x-reverse leading-0">
-
-                <!-- BEGIN: Language Dropdown  -->
-
-                <div class="relative">
-                    @foreach (Config::get('languages') as $lang => $language)
-                        @if ($lang == App::getLocale())
-                            <button
-                                class="text-slate-800 dark:text-white focus:ring-0 focus:outline-none font-medium rounded-lg text-sm text-center inline-flex items-center"
-                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <iconify-icon icon="{{ $language[1] }}" class="mr-0 md:mr-2 rtl:ml-2 text-xl">
-                                </iconify-icon>
-                                <span class="text-sm md:block hidden font-medium text-slate-600 dark:text-slate-300">
-                                    {{ $language[0] }}
-                                </span>
-                            </button>
-                        @endif
-                    @endforeach
-                    <!-- Language Dropdown menu -->
-                    {{-- <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button" class="nav-link p-2 fc-dropdown">
-                        <span class="flex items-center justify-center h-6 w-6">
-                            <img src="/images/flags/{{ App::getLocale() }}.jpg" alt="user-image" class="h-4 w-6">
-                        </span>
-                    </button>
-                    <div class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-40 z-50 mt-2 transition-[margin,opacity] duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg p-2">
-                        <!-- item-->
-                        @foreach (Config::get('languages') as $lang => $language)
-                        @if ($lang != App::getLocale())
-                            <a href="{{ route('admin.lang', $lang) }}" class="flex items-center gap-2.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
-                                <img src="/images/flags/{{ $lang }}.jpg" alt="user-image" class="h-4">
-                                <span class="align-middle">{{ $language }}</span>
-                            </a>
-                        @endif
-                    @endforeach
-                    </div> --}}
-                    <div
-                        class="dropdown-menu z-10 hidden bg-white divide-y divide-slate-100 shadow w-44 dark:bg-slate-800 border dark:border-slate-900 !top-[25px] rounded-md overflow-hidden">
-                        <ul class="py-1 text-sm text-slate-800 dark:text-slate-200">
-                            @foreach (Config::get('languages') as $lang => $language)
-                                @if ($lang != App::getLocale())
-                                    <li>
-                                        <a href="{{ route('lang', $lang) }}"
-                                            class="flex items-center px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white">
-                                            <iconify-icon icon="{{ $language[1] }}" class="ltr:mr-2 rtl:ml-2 text-xl">
-                                            </iconify-icon>
-                                            <span class="font-medium">{{ $language[0] }}</span>
-                                        </a>
-                                    </li>
-                                @endif
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-                <!-- Theme Changer -->
-                <!-- END: Language Dropdown -->
-
                 <!-- BEGIN: Toggle Theme -->
                 <div>
                     <button id="themeMood"

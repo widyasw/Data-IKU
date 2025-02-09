@@ -37,7 +37,7 @@
                         <div class="text-center 2xl:mb-10 mb-4">
                             <h4 class="font-medium">Sign in</h4>
                             <div class="text-slate-500 text-base">
-                                Sign in to your account to start using Dashcode
+                                Indikator Kinerja Utama (IKU) Program Studi D4 Manajemen Informatika
                             </div>
                         </div>
                         <!-- BEGIN: Login Form -->
@@ -45,7 +45,6 @@
                         <form class="space-y-4" method="POST" action='{{ route('login') }}'>
                             @csrf
                             <div class="fromGroup">
-                                <label class="block capitalize form-label">Email</label>
                                 <div class="relative ">
                                     <input type="email" name="email" class="  form-control py-2"
                                         placeholder="Email" value="{{ old('email') }}">
@@ -53,7 +52,6 @@
                                 </div>
                             </div>
                             <div class="fromGroup">
-                                <label class="block capitalize form-label">Passwrod</label>
                                 <div class="relative ">
                                     <input type="password" name="password" class="form-control py-2"
                                         placeholder="Password" value="{{ old('password') }}">
@@ -65,22 +63,10 @@
                                     <input type="checkbox" class="hiddens" name="remember">
                                     <span class="text-slate-500 dark:text-slate-400 text-sm leading-6 capitalize ml-2">Remember Me!</span>
                                 </label>
-                                <a class="text-sm text-slate-800 dark:text-slate-400 leading-6 font-medium"
-                                    href="{{ route('password.request') }}">Forgot
-                                    Password?
-                                </a>
                             </div>
                             <button class="btn btn-dark block w-full text-center">Sign in</button>
                         </form>
                         <!-- END: Login Form -->
-                        <div
-                            class="md:max-w-[345px] mx-auto font-normal text-slate-500 dark:text-slate-400 mt-12 uppercase text-sm">
-                            Don’t have an account?
-                            <a href="{{ route('register') }}"
-                                class="text-slate-900 dark:text-white font-medium hover:underline">
-                                Sign up
-                            </a>
-                        </div>
                     </div>
                     @include('auth.partials.footer')
                 </div>

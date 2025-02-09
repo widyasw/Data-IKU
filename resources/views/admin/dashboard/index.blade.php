@@ -1,9 +1,16 @@
 @extends('admin.admin_template')
 
 @section('main')
-    <div class="flex justify-between flex-wrap items-center mb-6">
-        <h4
-            class="font-medium lg:text-2xl text-xl capitalize text-slate-900 inline-block ltr:pr-4 rtl:pl-4 mb-4 sm:mb-0 flex space-x-3 rtl:space-x-reverse">
-            Dashboard</h4>
+    <div class="space-y-5">
+        <div class="grid grid-cols-4 gap-6 overflow-auto" style="height: 75vh">
+            @foreach ($items as $index =>  $iku)
+                <a href="{{ route('admin.iku-' . $index + 1 . '.index') }}" class="flex flex-col items-center">
+                    <div class="flex items-center justify-center w-full h-full bg-white shadow-md rounded-md">
+                        <span class="text-4xl font-bold text-black" style="font-size: 100px;">{{ $iku }}</span>
+                    </div>
+                    <span class="text-xl font-bold text-black mt-2">IKU {{ $index + 1 }}</span>
+                </a>
+            @endforeach
+        </div>
     </div>
 @endsection

@@ -1,3 +1,3 @@
 <div class="auth-footer text-center">
-    Copyright {{ date('Y') }}, Acielana All Rights Reserved.
+    Copyright {{ date('Y') }}, All Rights Reserved.
 </div>

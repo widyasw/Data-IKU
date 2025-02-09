@@ -27,13 +27,20 @@ class DashboardController extends Controller
 
     public function admin()
     {
-        $breadcrumbs = [
-            ['Utility', route('admin.dashboard')],
-            ['Acielana', route('logout')],
-        ];
-        $breadcrumb_active = 'Blank Page';
+        $title = 'Dashboard Indikator Kinerja Utama (IKU)';
 
-        return view('admin.dashboard.index', compact('breadcrumbs', 'breadcrumb_active'));
+        $items = [
+            IKU1::count(),
+            IKU2::count(),
+            IKU3::count(),
+            IKU4::count(),
+            IKU5::count(),
+            IKU6::count(),
+            IKU7::count(),
+            IKU8::count(),
+        ];
+
+        return view('admin.dashboard.index', compact('title', 'items'));
     }
 
     public function show_file(Request $request, $path, $id) {

@@ -29,13 +29,13 @@
             $route = Route::currentRouteName();
         @endphp
         <ul class="sidebar-menu">
-            <li class="sidebar-menu-title">HOME</li>
+            <li class="sidebar-menu-title">Menu</li>
             <li class="">
                 <a href="{{ route('admin.dashboard') }}"
                     class="navItem {{ $route == 'admin.dashboard' ? 'active' : '' }}">
                     <span class="flex items-center">
                         <iconify-icon class=" nav-icon" icon="heroicons-outline:home"></iconify-icon>
-                        <span>Home</span>
+                        <span>Dashboard</span>
                     </span>
                 </a>
             </li>
