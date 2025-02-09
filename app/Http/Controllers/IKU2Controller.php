@@ -138,7 +138,7 @@ class IKU2Controller extends Controller
     public function print()
     {
         $headers = [
-            'No', 'Nama', 'NIM', 'Jenis Kegiatan', 'Tempat', 'Waktu', 'Deskripsi', 'File'
+            'No', 'Nama', 'NIM', 'Jenis Kegiatan', 'Tempat', 'Waktu', 'Deskripsi', 'Berkas Pendukung'
         ];
 
         $dataIKU = IKU2::query()->with('select_list')->get()->map(function ($item, $key) {

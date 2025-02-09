@@ -135,7 +135,7 @@ class IKU5Controller extends Controller
     public function print()
     {
         $headers = [
-            'No', 'Nama', 'NIP', 'Jenis Kegiatan', 'Nama hasil kerja', 'Deskripsi', 'Tempat', 'File'
+            'No', 'Nama', 'NIP', 'Jenis Kegiatan', 'Nama hasil kerja', 'Deskripsi', 'Tempat', 'Berkas Pendukung'
         ];
 
         $dataIKU = IKU5::query()->with('select_list')->get()->map(function ($item, $key) {

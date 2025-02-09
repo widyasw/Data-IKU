@@ -130,7 +130,7 @@ class IKU8Controller extends Controller
     public function print()
     {
         $headers = [
-            'No', 'Nama program studi', 'Akreditasi BAN-PT', 'Masa Berlaku', 'Akreditasi Internasional', 'Masa Berlaku', 'File'
+            'No', 'Nama program studi', 'Akreditasi BAN-PT', 'Masa Berlaku', 'Akreditasi Internasional', 'Masa Berlaku', 'Berkas Pendukung'
         ];
 
         $dataIKU = IKU8::query()->with('select_list')->get()->map(function ($item, $key) {

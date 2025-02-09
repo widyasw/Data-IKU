@@ -144,7 +144,7 @@ class IKU3Controller extends Controller
             'Tempat',
             'Waktu',
             'Deskripsi',
-            'File'
+            'Berkas Pendukung'
         ];
 
         $dataIKU = IKU3::query()->with('select_list')->get()->map(function ($item, $key) {

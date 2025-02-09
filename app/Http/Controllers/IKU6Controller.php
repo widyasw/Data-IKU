@@ -134,7 +134,7 @@ class IKU6Controller extends Controller
     public function print()
     {
         $headers = [
-            'No', 'Nama Mitra', 'Jenis Lembaga', 'Jenis Berkas', 'Nomor', 'Jangka Waktu', 'File'
+            'No', 'Nama Mitra', 'Jenis Lembaga', 'Jenis Berkas', 'Nomor', 'Jangka Waktu', 'Berkas Pendukung'
         ];
 
         $dataIKU = IKU6::query()->with('select_list')->get()->map(function ($item, $key) {

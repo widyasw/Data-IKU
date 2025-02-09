@@ -60,7 +60,7 @@
                                                 Output
                                             </th>
                                             <th scope="col" class=" table-th ">
-                                                File
+                                                Berkas Pendukung
                                             </th>
 
                                             <th scope="col" class=" table-th ">
@@ -197,8 +197,7 @@
                                         <!-- File -->
                                         <div class="input-group">
                                             <label for="file"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Upload
-                                                File</label>
+                                                class="text-sm font-Inter font-normal text-slate-900 block">Berkas Pendukung</label>
                                             <input type="file" id="file" name="file"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
                                                 required>

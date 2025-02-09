@@ -129,7 +129,7 @@ class IKU4Controller extends Controller
     public function print()
     {
         $headers = [
-            'No', 'Nama', 'NIP', 'Jenis Kegiatan', 'Deskripsi', 'File'
+            'No', 'Nama', 'NIP', 'Jenis Kegiatan', 'Deskripsi', 'Berkas Pendukung'
         ];
 
         $dataIKU = IKU4::query()->with('select_list')->get()->map(function ($item, $key) {
