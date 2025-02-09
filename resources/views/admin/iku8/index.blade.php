@@ -74,18 +74,22 @@
                                     </thead>
                                     <tbody
                                         class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700">
+                                        {{-- list data yang akan ditampilkan --}}
                                         @foreach ($items as $key => $item)
                                             <tr>
                                                 <td class="table-td">{{ $key + 1 }}</td>
                                                 <td class="table-td">{{ $item->name }}</td>
                                                 <td class="table-td">{{ $item->banpt_rating }}</td>
+                                                {{-- gunakan carbon untuk format tanggal --}}
                                                 <td class="table-td">{{ Carbon\Carbon::parse($item->banpt_start_date)->format('d M Y') }} s.d. {{ Carbon\Carbon::parse($item->banpt_end_date)->format('d M Y') }}</td>
                                                 <td class="table-td">{{ $item->international_rating ?? '-'}}</td>
                                                 @php
                                                     $startDate = $item->international_start_date ? Carbon\Carbon::parse($item->international_start_date)->format('d M Y') : '';
                                                     $endDate = $item->international_end_date ? Carbon\Carbon::parse($item->international_end_date)->format('d M Y') : '';
                                                 @endphp
+                                                {{-- memakai ternary operation jika bernilai true maka .... : .... --}}
                                                 <td class="table-td">{{ $item->international_start_date && $item->international_end_date ? ( $startDate . ' s.d. ' . $endDate) : '-' }}</td>
+                                                {{-- route untuk menampilkanfile dengan mengirimkan beberapa parameter --}}
                                                 <td class="table-td">
                                                     <a href="{{ route('show_file', ['path' => 'iku-8', 'id' => $item->id, 'preview' => true]) }}"
                                                         class="text-primary hover:underline"
@@ -93,11 +97,13 @@
                                                 </td>
                                                 <td class="table-td ">
                                                     <div class="flex space-x-3 rtl:space-x-reverse">
+                                                        {{-- button edit data --}}
                                                         <button class="toolTip onTop justify-center action-btn"
                                                             data-tippy-content="Edit" data-tippy-theme="info"
                                                             onclick="edit({{ $item }})">
                                                             <iconify-icon icon="heroicons:pencil-square"></iconify-icon>
                                                         </button>
+                                                        {{-- button delete data --}}
                                                         <form id="delete-form-{{ $item->id }}"
                                                             action="{{ route('admin.iku-8.destroy', $item->id) }}"
                                                             method="POST">
@@ -281,10 +287,13 @@
                 });
             });
 
+            // pengecekan ketika field international diedit
             $('#international_rating, #international_start_date, #international_end_date').on('change', function() {
                 const internationalRating = $('#international_rating').val();
                 const internationalStartDate = $('#international_start_date').val();
                 const internationalEndDate = $('#international_end_date').val();
+
+                // jika kosong semua maka remove attribute required, jika ada yang diisi, maka harus required semua
                 if (internationalRating.trim() === '' && internationalStartDate.trim() === '' && internationalEndDate.trim() === '') {
                     $('#international_rating, #international_start_date, #international_end_date').removeAttr('required');
                 } else {
@@ -292,6 +301,8 @@
                 }
             });
 
+            // jika ada input pada form, cek form apakah yang required sudah diisi semua
+            // cek juga start_date end_date, jika ada end_date sebelum start_date maka akan muncul tulisan berwarna merah dibawahnya
             $("#form-el input, #form-el select, #form-el textarea").on("input change", function() {
                 checkDatePeriode('#banpt_start_date', '#banpt_end_date', '#banpt_end_date_danger')
                 checkDatePeriode('#international_start_date', '#international_end_date', '#international_end_date_danger')
@@ -300,17 +311,20 @@
             });
         });
 
+        // open modal create data
         function openModal() {
             reset_form();
             $('#form-title').html('Tambah IKU 8');
             $('#form_modal').modal('show');
         }
 
+        // open modal edit data, set seluruh data yang ada
         function edit(data) {
             reset_form();
             $('#form-title').html('Edit IKU 8');
             $("#file").prop("required", false); // Hapus required
             var currentAction = $("#form-el").attr("action");
+            // harus pakai _method karena bisa jadi mengirim file
             $("#form-el").attr("action", `${currentAction}/${data?.id}?_method=PUT`);
 
             // set edit data

@@ -13,28 +13,44 @@ use Illuminate\Support\Facades\Storage;
 class IKU8Controller extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the database.
      */
     public function index()
     {
+        // buat mengatur breadcrumbs
+        // 0: Nama yang akan tampil
+        // 1: apakah memiliki route ketika di klik
+        // 2: nama routenya apa
         $breadcrumbs = [
             ['IKU 8', true, route('admin.iku-8.index')],
             ['Index', false],
         ];
+        // untuk title yang ada ti tab bar
+        // untuk title yang ada di halaman nantinya
         $title = 'Data Indikator Kinerja Utama 8';
+        // sub title/deskripsi
         $subtitle = 'Program studi yang memiliki akreditasi atau sertifikat internasional yang diakui pemerintah.';
-        $items = IKU8::with('select_list')->latest()->get();
+        // list data
+        $items = IKU8::latest()->get();
 
         return view('admin.iku8.index', compact('breadcrumbs', 'title', 'subtitle', 'items'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in database.
      */
     public function store(Request $request)
     {
         try {
+            // begin transaksi, ketika terjadi error db nya gajadi disimpan sampai ketemu db::commit
             DB::beginTransaction();
+            // validasi laravel
+            // required: wajib diisi
+            // max: maksimal jumlah karakter
+            // date: wajib tanggal yang valid
+            // after: data harus setelah ..... tanggalnya
+            // required_with: jika ..... diisi, field ini juga harus diisi
+            // file: harus kirim file
             $request->validate([
                 'name' => 'required|string|max:288',
                 'banpt_rating' => 'required|string|max:288',
@@ -46,10 +62,14 @@ class IKU8Controller extends Controller
                 'file' => 'required|file',
             ]);
 
+            // karena pasti ada file yang dikirim
             $file = $request->file;
+            // ambil nama file dengan menghapus spasi untuk disimpan di database
             $fileName = str_replace(' ', '', $file->getClientOriginalName());
+            // upload file ke storage laravel cek classnya aja untuk detailnya
             $filePath = HelperPublic::helpStoreFileToStorage($file, 'iku-8');
 
+            // simpan di database, jangan lupa setting di model fillable/guarded nya
             IKU8::create([
                 'name' => $request->name,
                 'banpt_rating' => $request->banpt_rating,
@@ -62,19 +82,22 @@ class IKU8Controller extends Controller
                 'file_path' => $filePath,
             ]);
 
+            // simpan data ke database
             DB::commit();
 
+            // kembali ke halaman sebelumnya dengan mengirimkan session color dan message untuk menampilkan alert
             return redirect()->back()->with(['color' => 'bg-success-500', 'message' => __('Berhasil menambahkan data')]);
         } catch (Exception $e) {
             $message = $e->getMessage();
             DB::rollback();
+            // kembali ke halaman sebelumnya dengan mengirimkan session color dan message untuk menampilkan alert
             return redirect()->back()->with(['color' => 'bg-danger-500', 'message' => __($message)]);
         }
 
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in database.
      */
     public function update(Request $request, IKU8 $iku8)
     {
@@ -93,6 +116,8 @@ class IKU8Controller extends Controller
             DB::beginTransaction();
             $fileName = $iku8->file_name;
             $filePath = $iku8->file_path;
+
+            // jika ada file yang dikirim
             if($request->file('file')) {
                 $file = $request->file;
 
@@ -128,21 +153,24 @@ class IKU8Controller extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from database.
      */
     public function destroy(IKU8 $iku8)
     {
+        // hapus data
         $iku8->delete();
         return redirect()->back()->with(['color' => 'bg-success-500', 'message' => __('Berhasil menghapus data')]);
     }
 
     public function print()
     {
+        // header untuk export excel
         $headers = [
             'No', 'Nama program studi', 'Akreditasi BAN-PT', 'Masa Berlaku', 'Akreditasi Internasional', 'Masa Berlaku', 'Berkas Pendukung'
         ];
 
-        $dataIKU = IKU8::query()->with('select_list')->get()->map(function ($item, $key) {
+        // ambil data dan mapping untuk diexport (nantinya bakal ke export sesuai index)
+        $dataIKU = IKU8::query()->get()->map(function ($item, $key) {
             return [
                 $key + 1,
                 $item->name,
@@ -154,6 +182,7 @@ class IKU8Controller extends Controller
             ];
         });
 
+        // export data ke excel, cek class lebih detail
         return HelperPublic::export(
             'Data Indikator Kinerja Utama 8',
             'Program studi yang memiliki akreditasi atau sertifikat internasional yang diakui pemerintah.',

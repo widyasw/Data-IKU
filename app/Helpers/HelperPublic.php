@@ -10,12 +10,20 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class HelperPublic
 {
-    public static function helpStoreFileToStorage($file, string $path)
+    /**
+     * upload file ke storage
+     *
+     * @param [type] $file
+     * @param string $path directory untuk simpan data
+     * @return String
+     */
+    public static function helpStoreFileToStorage($file, string $path) : String
     {
+        // merubah nama awal untuk disimpan di storage agar tidak sama 1 dengan lainnya
         $changedName = time() . random_int(100, 999) . $file->getClientOriginalName();
-
+        // store data sesuai dengan path yang dikirimkan beserta nama file
         $file->storeAs($path, $changedName);
-
+        // return path dan nama file untuk disimpan di database
         return $path . '/' . $changedName;
     }
 

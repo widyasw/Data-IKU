@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Storage;
 class IKU2Controller extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the database.
      */
     public function index()
     {
@@ -32,7 +32,7 @@ class IKU2Controller extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in database.
      */
     public function store(Request $request)
     {
@@ -77,7 +77,7 @@ class IKU2Controller extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in database.
      */
     public function update(Request $request, IKU2 $iku2)
     {
@@ -131,7 +131,7 @@ class IKU2Controller extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from database.
      */
     public function destroy(IKU2 $iku2)
     {

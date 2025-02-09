@@ -15,7 +15,7 @@ use Laravolt\Avatar\Avatar;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the database.
      */
     public function index()
     {
@@ -42,7 +42,7 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in database.
      */
     public function store(Request $request)
     {
@@ -105,7 +105,7 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in database.
      */
     public function update(Request $request, User $user)
     {
@@ -135,7 +135,7 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from database.
      */
     public function destroy(User $user)
     {
