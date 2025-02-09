@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Helpers\HelperPublic;
 use App\Models\IKU2;
 use App\Models\SelectList;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class IKU2Controller extends Controller
@@ -152,7 +152,7 @@ class IKU2Controller extends Controller
                 $item->nim,
                 $item->select_list->name,
                 $item->location,
-                $item->time,
+                Carbon::parse($item->start_date)->format('d M Y') . ' s.d ' . Carbon::parse($item->end_date)->format('d M Y'),
                 $item->description,
                 route('show_file', ['path' => 'iku-4', 'id' => $item->id, 'preview' => true]),
             ];

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\HelperPublic;
 use App\Models\IKU8;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -146,9 +147,9 @@ class IKU8Controller extends Controller
                 $key + 1,
                 $item->name,
                 $item->banpt_rating,
-                $item->banpt_time,
+                Carbon::parse($item->banpt_start_date)->format('d M Y') . ' s.d ' . Carbon::parse($item->banpt_end_date)->format('d M Y'),
                 $item->international_rating,
-                $item->international_time,
+                $item->international_start_date && $item->international_end_date ? Carbon::parse($item->international_start_date)->format('d M Y') . ' s.d ' . Carbon::parse($item->international_end_date)->format('d M Y') : '',
                 route('show_file', ['path' => 'iku-8', 'id' => $item->id, 'preview' => true]),
             ];
         });
