@@ -261,7 +261,10 @@
                 });
             });
 
-            $("#form-el input, #form-el select, #form-el textarea").on("input change", checkForm);
+            $("#form-el input, #form-el select, #form-el textarea").on("input change", function() {
+                checkDatePeriode('#start_date', '#end_date', '#end_date_danger')
+                checkForm('.end_date_danger')
+            });
         });
 
         function openModal() {

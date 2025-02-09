@@ -81,7 +81,7 @@
                                                 <td class="table-td">{{ $item->institution_type }}</td>
                                                 <td class="table-td">{{ $item->select_list->name ?? '' }}</td>
                                                 <td class="table-td">{{ $item->nomor }}</td>
-                                                <td class="table-td">{{ $item->time }}</td>
+                                                <td class="table-td">{{ Carbon\Carbon::parse($item->start_date)->format('d M Y') }} s.d. {{ Carbon\Carbon::parse($item->end_date)->format('d M Y') }}</td>
                                                 <td class="table-td">
                                                     <a href="{{ route('show_file', ['path' => 'iku-6', 'id' => $item->id, 'preview' => true]) }}"
                                                         class="text-primary hover:underline"
@@ -198,14 +198,22 @@
                                                 placeholder="Masukkan nomor" required>
                                         </div>
 
-                                        <!-- Jangka Waktu -->
+                                        <!-- Start Date -->
                                         <div class="input-group">
-                                            <label for="time"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Jangka
-                                                Waktu</label>
-                                            <input type="text" id="time" name="time"
+                                            <label for="start_date"
+                                                class="text-sm font-Inter font-normal text-slate-900 block">Waktu Mulai</label>
+                                            <input type="date" id="start_date" name="start_date"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
-                                                placeholder="Masukkan jangka waktu" required>
+                                                placeholder="Masukkan waktu" required>
+                                        </div>
+                                        <!-- End Date -->
+                                        <div class="input-group">
+                                            <label for="end_date"
+                                                class="text-sm font-Inter font-normal text-slate-900 block">Waktu Akhir</label>
+                                            <input type="date" id="end_date" name="end_date"
+                                                class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
+                                                placeholder="Masukkan waktu" required>
+                                            <p id="end_date_danger" class="text-danger-500 hidden end_date_danger">Waktu akhir tidak boleh melebihi waktu mulai</p>
                                         </div>
 
                                         <!-- File -->
@@ -266,7 +274,10 @@
                 });
             });
 
-            $("#form-el input, #form-el select, #form-el textarea").on("input change", checkForm);
+            $("#form-el input, #form-el select, #form-el textarea").on("input change", function() {
+                checkDatePeriode('#start_date', '#end_date', '#end_date_danger')
+                checkForm('.end_date_danger')
+            });
         });
 
         function openModal() {
@@ -287,7 +298,8 @@
             $('#institution_type').val(data?.institution_type);
             $('#select_id').val(data?.select_id);
             $('#nomor').val(data?.nomor);
-            $('#time').val(data?.time);
+            $('#start_date').val(data?.start_date);
+            $('#end_date').val(data?.end_date);
 
             checkForm();
 

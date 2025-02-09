@@ -44,7 +44,8 @@ class IKU2Controller extends Controller
                 'select_id' => 'required|exists:select_lists,id',
                 'description' => 'required|string',
                 'location' => 'required|string|max:255',
-                'time' => 'required|string|max:255',
+                'start_date' => 'required|date',
+                'end_date' => 'required|date|after:start_date',
                 'file' => 'required|file',
             ]);
 
@@ -58,7 +59,8 @@ class IKU2Controller extends Controller
                 'select_id' => $request->select_id,
                 'description' => $request->description,
                 'location' => $request->location,
-                'time' => $request->time,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
                 'file_name' => $fileName,
                 'file_path' => $filePath,
             ]);
@@ -85,7 +87,8 @@ class IKU2Controller extends Controller
             'select_id' => 'required|exists:select_lists,id',
             'description' => 'required|string',
             'location' => 'required|string|max:255',
-            'time' => 'required|string|max:255',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date',
             'file' => 'nullable|file',
         ]);
 
@@ -111,7 +114,8 @@ class IKU2Controller extends Controller
                 'select_id' => $request->select_id,
                 'description' => $request->description,
                 'location' => $request->location,
-                'time' => $request->time,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
                 'file_name' => $fileName,
                 'file_path' => $filePath,
             ]);

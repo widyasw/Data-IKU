@@ -252,7 +252,9 @@
                 });
             });
 
-            $("#form-el input, #form-el select, #form-el textarea").on("input change", checkForm);
+            $("#form-el input, #form-el select, #form-el textarea").on("input change", function () {
+                checkForm();
+            });
         });
 
         function openModal() {

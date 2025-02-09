@@ -15,9 +15,11 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name')->nullable();
             $table->string('banpt_rating')->nullable();
-            $table->string('banpt_time')->nullable();
+            $table->date('banpt_start_date')->nullable();
+            $table->date('banpt_end_date')->nullable();
             $table->string('international_rating')->nullable();
-            $table->string('international_time')->nullable();
+            $table->date('international_start_date')->nullable();
+            $table->date('international_end_date')->nullable();
             $table->string('file_name')->nullable();
             $table->string('file_path')->nullable();
 

@@ -43,7 +43,8 @@ class IKU6Controller extends Controller
                 'institution_type' => 'required|string|max:255',
                 'select_id' => 'required|exists:select_lists,id',
                 'nomor' => 'required|string|max:255',
-                'time' => 'required|string|max:255',
+                'start_date' => 'required|date',
+                'end_date' => 'required|date|after:start_date',
                 'file' => 'required|file',
             ]);
 
@@ -56,7 +57,8 @@ class IKU6Controller extends Controller
                 'institution_type' => $request->institution_type,
                 'select_id' => $request->select_id,
                 'nomor' => $request->nomor,
-                'time' => $request->time,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
                 'file_name' => $fileName,
                 'file_path' => $filePath,
             ]);
@@ -82,7 +84,8 @@ class IKU6Controller extends Controller
             'institution_type' => 'required|string|max:255',
             'select_id' => 'required|exists:select_lists,id',
             'nomor' => 'required|string|max:255',
-            'time' => 'required|string|max:255',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date',
             'file' => 'nullable|file',
         ]);
 
@@ -107,7 +110,8 @@ class IKU6Controller extends Controller
                 'institution_type' => $request->institution_type,
                 'select_id' => $request->select_id,
                 'nomor' => $request->nomor,
-                'time' => $request->time,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
                 'file_name' => $fileName,
                 'file_path' => $filePath,
             ]);

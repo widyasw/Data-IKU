@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('institution_type')->nullable();
             $table->foreignUuid('select_id')->nullable();
             $table->text('nomor')->nullable();
-            $table->string('time')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->string('file_name')->nullable();
             $table->string('file_path')->nullable();
 
