@@ -255,24 +255,6 @@
             $("#form-el input, #form-el select, #form-el textarea").on("input change", checkForm);
         });
 
-        function deleteData(event, id) {
-            event.preventDefault(); // Mencegah submit langsung
-
-            Swal.fire({
-                title: "Are you sure?",
-                text: "This action cannot be undone!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#d33",
-                cancelButtonColor: "#3085d6",
-                confirmButtonText: "Yes, delete it!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $(`#delete-form-${id}`).submit(); // Submit form jika dikonfirmasi
-                }
-            });
-        }
-
         function openModal() {
             reset_form();
             $('#form-title').html('Tambah IKU 7');
