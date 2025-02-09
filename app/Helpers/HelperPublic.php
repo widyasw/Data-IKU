@@ -69,7 +69,7 @@ class HelperPublic
 
         // Set header agar file bisa diunduh
         $response->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        $response->headers->set('Content-Disposition', 'attachment;filename="export.xlsx"');
+        $response->headers->set('Content-Disposition', 'attachment;filename="'. time() . '_'.$title.'.xlsx"');
         $response->headers->set('Cache-Control', 'max-age=0');
 
         return $response;

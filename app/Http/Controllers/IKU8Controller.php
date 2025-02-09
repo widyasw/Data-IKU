@@ -40,9 +40,9 @@ class IKU8Controller extends Controller
                 'banpt_rating' => 'required|string|max:288',
                 'banpt_start_date' => 'required|date',
                 'banpt_end_date' => 'required|date|after:banpt_start_date',
-                'international_rating' => 'required|string|max:288',
-                'international_start_date' => 'required|date',
-                'international_end_date' => 'required|date|after:international_start_date',
+                'international_rating' => 'nullable|string|max:288',
+                'international_start_date' => 'nullable|required_with:international_rating|date',
+                'international_end_date' => 'nullable|required_with:international_start_date|date|after:international_start_date',
                 'file' => 'required|file',
             ]);
 
@@ -148,8 +148,8 @@ class IKU8Controller extends Controller
                 $item->name,
                 $item->banpt_rating,
                 Carbon::parse($item->banpt_start_date)->format('d M Y') . ' s.d ' . Carbon::parse($item->banpt_end_date)->format('d M Y'),
-                $item->international_rating,
-                $item->international_start_date && $item->international_end_date ? Carbon::parse($item->international_start_date)->format('d M Y') . ' s.d ' . Carbon::parse($item->international_end_date)->format('d M Y') : '',
+                $item->international_rating ?? '-',
+                $item->international_start_date && $item->international_end_date ? Carbon::parse($item->international_start_date)->format('d M Y') . ' s.d ' . Carbon::parse($item->international_end_date)->format('d M Y') : '-',
                 route('show_file', ['path' => 'iku-8', 'id' => $item->id, 'preview' => true]),
             ];
         });

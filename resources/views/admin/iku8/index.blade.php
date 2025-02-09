@@ -79,9 +79,13 @@
                                                 <td class="table-td">{{ $key + 1 }}</td>
                                                 <td class="table-td">{{ $item->name }}</td>
                                                 <td class="table-td">{{ $item->banpt_rating }}</td>
-                                                <td class="table-td">{{ $item->banpt_time }}</td>
-                                                <td class="table-td">{{ $item->international_rating }}</td>
-                                                <td class="table-td">{{ $item->international_time }}</td>
+                                                <td class="table-td">{{ Carbon\Carbon::parse($item->banpt_start_date)->format('d M Y') }} s.d. {{ Carbon\Carbon::parse($item->banpt_end_date)->format('d M Y') }}</td>
+                                                <td class="table-td">{{ $item->international_rating ?? '-'}}</td>
+                                                @php
+                                                    $startDate = $item->international_start_date ? Carbon\Carbon::parse($item->international_start_date)->format('d M Y') : '';
+                                                    $endDate = $item->international_end_date ? Carbon\Carbon::parse($item->international_end_date)->format('d M Y') : '';
+                                                @endphp
+                                                <td class="table-td">{{ $item->international_start_date && $item->international_end_date ? ( $startDate . ' s.d. ' . $endDate) : '-' }}</td>
                                                 <td class="table-td">
                                                     <a href="{{ route('show_file', ['path' => 'iku-8', 'id' => $item->id, 'preview' => true]) }}"
                                                         class="text-primary hover:underline"
@@ -198,7 +202,7 @@
                                                 Internasional</label>
                                             <input type="text" id="international_rating" name="international_rating"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
-                                                placeholder="Masukkan Akreditasi Internasional" required>
+                                                placeholder="Masukkan Akreditasi Internasional">
                                         </div>
 
                                         <!-- Start Date -->
@@ -207,7 +211,7 @@
                                                 class="text-sm font-Inter font-normal text-slate-900 block">Waktu Mulai</label>
                                             <input type="date" id="international_start_date" name="international_start_date"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
-                                                placeholder="Masukkan waktu" required>
+                                                placeholder="Masukkan waktu">
                                         </div>
                                         <!-- End Date -->
                                         <div class="input-group">
@@ -215,7 +219,7 @@
                                                 class="text-sm font-Inter font-normal text-slate-900 block">Waktu Akhir</label>
                                             <input type="date" id="international_end_date" name="international_end_date"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
-                                                placeholder="Masukkan waktu" required>
+                                                placeholder="Masukkan waktu">
                                             <p id="international_end_date_danger" class="text-danger-500 hidden end_date_danger">Waktu akhir tidak boleh melebihi waktu mulai</p>
                                         </div>
 
@@ -277,6 +281,17 @@
                 });
             });
 
+            $('#international_rating, #international_start_date, #international_end_date').on('change', function() {
+                const internationalRating = $('#international_rating').val();
+                const internationalStartDate = $('#international_start_date').val();
+                const internationalEndDate = $('#international_end_date').val();
+                if (internationalRating.trim() === '' && internationalStartDate.trim() === '' && internationalEndDate.trim() === '') {
+                    $('#international_rating, #international_start_date, #international_end_date').removeAttr('required');
+                } else {
+                    $('#international_rating, #international_start_date, #international_end_date').attr('required', 'required');
+                }
+            });
+
             $("#form-el input, #form-el select, #form-el textarea").on("input change", function() {
                 checkDatePeriode('#banpt_start_date', '#banpt_end_date', '#banpt_end_date_danger')
                 checkDatePeriode('#international_start_date', '#international_end_date', '#international_end_date_danger')
@@ -301,10 +316,11 @@
             // set edit data
             $('#name').val(data?.name);
             $('#banpt_rating').val(data?.banpt_rating);
-            $('#banpt_time').val(data?.banpt_time);
+            $('#banpt_start_date').val(data?.banpt_start_date);
+            $('#banpt_end_date').val(data?.banpt_end_date);
             $('#international_rating').val(data?.international_rating);
-            $('#international_time').val(data?.international_time);
-            $('#location').val(data?.location);
+            $('#international_start_date').val(data?.international_start_date);
+            $('#international_end_date').val(data?.international_end_date);
 
             checkForm();
 
