@@ -9,8 +9,8 @@
             </div>
             <div class="ltr:md:text-right rtl:md:text-end text-center text-sm">
                 Hand-crafted &amp; Made by
-                <a href="https://acielana.my.id" target="_blank" class="text-primary-500 font-semibold">
-                    Acielana
+                <a href="#" class="text-primary-500 font-semibold">
+                    Widya
                 </a>
             </div>
         </div>

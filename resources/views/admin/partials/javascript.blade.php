@@ -22,8 +22,10 @@
             }
 
             if (date != null) {
-                let hasHidden = $(date).hasClass('hidden');
-                isValid = isValid && hasHidden;
+                let hasVisible = $(date).filter(":not(.hidden)").length > 0; // Cek apakah ada yang tidak memiliki class 'hidden'
+
+                console.log(hasVisible, 'has visible');
+                isValid = isValid && !hasVisible;
             }
 
         });

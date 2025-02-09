@@ -173,14 +173,22 @@
                                                 placeholder="Masukkan Akreditasi BAN-PT" required>
                                         </div>
 
-                                        <!-- Masa Berlaku -->
+                                        <!-- Start Date -->
                                         <div class="input-group">
-                                            <label for="banpt_time"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Masa
-                                                Berlaku</label>
-                                            <input type="text" id="banpt_time" name="banpt_time"
+                                            <label for="banpt_start_date"
+                                                class="text-sm font-Inter font-normal text-slate-900 block">Waktu Mulai</label>
+                                            <input type="date" id="banpt_start_date" name="banpt_start_date"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
-                                                placeholder="Masukkan Masa Berlaku" required>
+                                                placeholder="Masukkan waktu" required>
+                                        </div>
+                                        <!-- End Date -->
+                                        <div class="input-group">
+                                            <label for="banpt_end_date"
+                                                class="text-sm font-Inter font-normal text-slate-900 block">Waktu Akhir</label>
+                                            <input type="date" id="banpt_end_date" name="banpt_end_date"
+                                                class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
+                                                placeholder="Masukkan waktu" required>
+                                            <p id="banpt_end_date_danger" class="text-danger-500 hidden end_date_danger">Waktu akhir tidak boleh melebihi waktu mulai</p>
                                         </div>
 
                                         <!-- Akreditasi Internasional -->
@@ -193,14 +201,22 @@
                                                 placeholder="Masukkan Akreditasi Internasional" required>
                                         </div>
 
-                                        <!-- Masa Berlaku -->
+                                        <!-- Start Date -->
                                         <div class="input-group">
-                                            <label for="international_time"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Masa
-                                                Berlaku</label>
-                                            <input type="text" id="international_time" name="international_time"
+                                            <label for="international_start_date"
+                                                class="text-sm font-Inter font-normal text-slate-900 block">Waktu Mulai</label>
+                                            <input type="date" id="international_start_date" name="international_start_date"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
-                                                placeholder="Masukkan Masa Berlaku" required>
+                                                placeholder="Masukkan waktu" required>
+                                        </div>
+                                        <!-- End Date -->
+                                        <div class="input-group">
+                                            <label for="international_end_date"
+                                                class="text-sm font-Inter font-normal text-slate-900 block">Waktu Akhir</label>
+                                            <input type="date" id="international_end_date" name="international_end_date"
+                                                class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
+                                                placeholder="Masukkan waktu" required>
+                                            <p id="international_end_date_danger" class="text-danger-500 hidden end_date_danger">Waktu akhir tidak boleh melebihi waktu mulai</p>
                                         </div>
 
                                         <!-- File -->
@@ -262,7 +278,9 @@
             });
 
             $("#form-el input, #form-el select, #form-el textarea").on("input change", function() {
-                checkDatePeriode('#start_date', '#end_date', '#end_date_danger')
+                checkDatePeriode('#banpt_start_date', '#banpt_end_date', '#banpt_end_date_danger')
+                checkDatePeriode('#international_start_date', '#international_end_date', '#international_end_date_danger')
+
                 checkForm('.end_date_danger')
             });
         });

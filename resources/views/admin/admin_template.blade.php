@@ -13,7 +13,7 @@
         <!-- BEGIN: Settings -->
 
         <!-- BEGIN: Settings -->
-        @include('admin.partials.settings')
+        {{-- @include('admin.partials.settings') --}}
         <!-- END: Settings -->
 
         <!-- End: Settings -->

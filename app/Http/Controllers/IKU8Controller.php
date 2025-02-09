@@ -37,9 +37,11 @@ class IKU8Controller extends Controller
             $request->validate([
                 'name' => 'required|string|max:288',
                 'banpt_rating' => 'required|string|max:288',
-                'banpt_time' => 'required|string|max:288',
+                'banpt_start_date' => 'required|date',
+                'banpt_end_date' => 'required|date|after:banpt_start_date',
                 'international_rating' => 'required|string|max:288',
-                'international_time' => 'required|string|max:288',
+                'international_start_date' => 'required|date',
+                'international_end_date' => 'required|date|after:international_start_date',
                 'file' => 'required|file',
             ]);
 
@@ -50,9 +52,11 @@ class IKU8Controller extends Controller
             IKU8::create([
                 'name' => $request->name,
                 'banpt_rating' => $request->banpt_rating,
-                'banpt_time' => $request->banpt_time,
+                'banpt_start_date' => $request->banpt_start_date,
+                'banpt_end_date' => $request->banpt_end_date,
                 'international_rating' => $request->international_rating,
-                'international_time' => $request->international_time,
+                'international_start_date' => $request->international_start_date,
+                'international_end_date' => $request->international_end_date,
                 'file_name' => $fileName,
                 'file_path' => $filePath,
             ]);
@@ -76,9 +80,11 @@ class IKU8Controller extends Controller
         $request->validate([
             'name' => 'required|string|max:288',
             'banpt_rating' => 'required|string|max:288',
-            'banpt_time' => 'required|string|max:288',
+            'banpt_start_date' => 'required|date',
+            'banpt_end_date' => 'required|date|after:banpt_start_date',
             'international_rating' => 'required|string|max:288',
-            'international_time' => 'required|string|max:288',
+            'international_start_date' => 'required|date',
+            'international_end_date' => 'required|date|after:international_start_date',
             'file' => 'nullable|file',
         ]);
 
@@ -101,9 +107,11 @@ class IKU8Controller extends Controller
             $iku8->update([
                 'name' => $request->name,
                 'banpt_rating' => $request->banpt_rating,
-                'banpt_time' => $request->banpt_time,
+                'banpt_start_date' => $request->banpt_start_date,
+                'banpt_end_date' => $request->banpt_end_date,
                 'international_rating' => $request->international_rating,
-                'international_time' => $request->international_time,
+                'international_start_date' => $request->international_start_date,
+                'international_end_date' => $request->international_end_date,
                 'file_name' => $fileName,
                 'file_path' => $filePath,
             ]);
