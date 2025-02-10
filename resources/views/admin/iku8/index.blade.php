@@ -6,32 +6,31 @@
         <div class=" space-y-5">
             <div class="card">
                 <header class=" card-header noborder">
-                    <div>
-                        <h4 class="card-title">{{ $title }}
-                        </h4>
-                        <p class="text-muted">{{ $subtitle }}
-                        </p>
-                    </div>
+                    <div class="flex items-center justify-between w-full">
+                        <div class="flex-1">
+                            <h4 class="card-title">{{ $title }}</h4>
+                            <p class="text-muted">{{ $subtitle }}</p>
+                        </div>
 
-                    <div>
-                        <a href="{{ route('admin.iku-8.print') }}" target="_blank">
-                            <button class="btn inline-flex justify-center btn-secondary">
+                        <div class="flex gap-2">
+                            <a href="{{ route('admin.iku-3.print') }}" target="_blank">
+                                <button class="btn inline-flex justify-center btn-secondary">
+                                    <span class="flex items-center">
+                                        <iconify-icon class="text-xl ltr:mr-2 rtl:ml-2"
+                                            icon="heroicons-outline:printer"></iconify-icon>
+                                        <span>Cetak</span>
+                                    </span>
+                                </button>
+                            </a>
+                            <button class="btn inline-flex justify-center btn-primary" onclick="openModal()">
                                 <span class="flex items-center">
                                     <iconify-icon class="text-xl ltr:mr-2 rtl:ml-2"
-                                        icon="heroicons-outline:printer"></iconify-icon>
-                                    <span>Cetak</span>
+                                        icon="heroicons-outline:plus-circle"></iconify-icon>
+                                    <span>Tambah</span>
                                 </span>
                             </button>
-                        </a>
-                        <button class="btn inline-flex justify-center btn-primary" onclick="openModal()">
-                            <span class="flex items-center">
-                                <iconify-icon class="text-xl ltr:mr-2 rtl:ml-2"
-                                    icon="heroicons-outline:plus-circle"></iconify-icon>
-                                <span>Tambah</span>
-                            </span>
-                        </button>
+                        </div>
                     </div>
-
                 </header>
                 <div class="card-body px-6 pb-6">
                     @include('admin.partials.alert')
@@ -81,14 +80,27 @@
                                                 <td class="table-td">{{ $item->name }}</td>
                                                 <td class="table-td">{{ $item->banpt_rating }}</td>
                                                 {{-- gunakan carbon untuk format tanggal --}}
-                                                <td class="table-td">{{ Carbon\Carbon::parse($item->banpt_start_date)->format('d M Y') }} s.d. {{ Carbon\Carbon::parse($item->banpt_end_date)->format('d M Y') }}</td>
-                                                <td class="table-td">{{ $item->international_rating ?? '-'}}</td>
+                                                <td class="table-td">
+                                                    {{ Carbon\Carbon::parse($item->banpt_start_date)->format('d M Y') }}
+                                                    s.d. {{ Carbon\Carbon::parse($item->banpt_end_date)->format('d M Y') }}
+                                                </td>
+                                                <td class="table-td">{{ $item->international_rating ?? '-' }}</td>
                                                 @php
-                                                    $startDate = $item->international_start_date ? Carbon\Carbon::parse($item->international_start_date)->format('d M Y') : '';
-                                                    $endDate = $item->international_end_date ? Carbon\Carbon::parse($item->international_end_date)->format('d M Y') : '';
+                                                    $startDate = $item->international_start_date
+                                                        ? Carbon\Carbon::parse($item->international_start_date)->format(
+                                                            'd M Y',
+                                                        )
+                                                        : '';
+                                                    $endDate = $item->international_end_date
+                                                        ? Carbon\Carbon::parse($item->international_end_date)->format(
+                                                            'd M Y',
+                                                        )
+                                                        : '';
                                                 @endphp
                                                 {{-- memakai ternary operation jika bernilai true maka .... : .... --}}
-                                                <td class="table-td">{{ $item->international_start_date && $item->international_end_date ? ( $startDate . ' s.d. ' . $endDate) : '-' }}</td>
+                                                <td class="table-td">
+                                                    {{ $item->international_start_date && $item->international_end_date ? $startDate . ' s.d. ' . $endDate : '-' }}
+                                                </td>
                                                 {{-- route untuk menampilkanfile dengan mengirimkan beberapa parameter --}}
                                                 <td class="table-td">
                                                     <a href="{{ route('show_file', ['path' => 'iku-8', 'id' => $item->id, 'preview' => true]) }}"
@@ -151,7 +163,7 @@
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
                                             d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10
-                                                                                                                                                                                                                                                                                                                                                                    11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                                                                                                                                                                                                                                                                                                                                            11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                                             clip-rule="evenodd"></path>
                                     </svg>
                                     <span class="sr-only">Close modal</span>
@@ -186,7 +198,8 @@
                                         <!-- Start Date -->
                                         <div class="input-group">
                                             <label for="banpt_start_date"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Waktu Mulai</label>
+                                                class="text-sm font-Inter font-normal text-slate-900 block">Waktu
+                                                Mulai</label>
                                             <input type="date" id="banpt_start_date" name="banpt_start_date"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
                                                 placeholder="Masukkan waktu" required>
@@ -194,11 +207,13 @@
                                         <!-- End Date -->
                                         <div class="input-group">
                                             <label for="banpt_end_date"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Waktu Akhir</label>
+                                                class="text-sm font-Inter font-normal text-slate-900 block">Waktu
+                                                Akhir</label>
                                             <input type="date" id="banpt_end_date" name="banpt_end_date"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
                                                 placeholder="Masukkan waktu" required>
-                                            <p id="banpt_end_date_danger" class="text-danger-500 hidden end_date_danger">Waktu akhir tidak boleh melebihi waktu mulai</p>
+                                            <p id="banpt_end_date_danger" class="text-danger-500 hidden end_date_danger">
+                                                Waktu akhir tidak boleh melebihi waktu mulai</p>
                                         </div>
 
                                         <!-- Akreditasi Internasional -->
@@ -214,25 +229,32 @@
                                         <!-- Start Date -->
                                         <div class="input-group">
                                             <label for="international_start_date"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Waktu Mulai</label>
-                                            <input type="date" id="international_start_date" name="international_start_date"
+                                                class="text-sm font-Inter font-normal text-slate-900 block">Waktu
+                                                Mulai</label>
+                                            <input type="date" id="international_start_date"
+                                                name="international_start_date"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
                                                 placeholder="Masukkan waktu">
                                         </div>
                                         <!-- End Date -->
                                         <div class="input-group">
                                             <label for="international_end_date"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Waktu Akhir</label>
-                                            <input type="date" id="international_end_date" name="international_end_date"
+                                                class="text-sm font-Inter font-normal text-slate-900 block">Waktu
+                                                Akhir</label>
+                                            <input type="date" id="international_end_date"
+                                                name="international_end_date"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
                                                 placeholder="Masukkan waktu">
-                                            <p id="international_end_date_danger" class="text-danger-500 hidden end_date_danger">Waktu akhir tidak boleh melebihi waktu mulai</p>
+                                            <p id="international_end_date_danger"
+                                                class="text-danger-500 hidden end_date_danger">Waktu akhir tidak boleh
+                                                melebihi waktu mulai</p>
                                         </div>
 
                                         <!-- File -->
                                         <div class="input-group">
                                             <label for="file"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Berkas Pendukung</label>
+                                                class="text-sm font-Inter font-normal text-slate-900 block">Berkas
+                                                Pendukung</label>
                                             <input type="file" id="file" name="file"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
                                                 required>
@@ -294,10 +316,13 @@
                 const internationalEndDate = $('#international_end_date').val();
 
                 // jika kosong semua maka remove attribute required, jika ada yang diisi, maka harus required semua
-                if (internationalRating.trim() === '' && internationalStartDate.trim() === '' && internationalEndDate.trim() === '') {
-                    $('#international_rating, #international_start_date, #international_end_date').removeAttr('required');
+                if (internationalRating.trim() === '' && internationalStartDate.trim() === '' &&
+                    internationalEndDate.trim() === '') {
+                    $('#international_rating, #international_start_date, #international_end_date')
+                        .removeAttr('required');
                 } else {
-                    $('#international_rating, #international_start_date, #international_end_date').attr('required', 'required');
+                    $('#international_rating, #international_start_date, #international_end_date').attr(
+                        'required', 'required');
                 }
             });
 
@@ -305,7 +330,8 @@
             // cek juga start_date end_date, jika ada end_date sebelum start_date maka akan muncul tulisan berwarna merah dibawahnya
             $("#form-el input, #form-el select, #form-el textarea").on("input change", function() {
                 checkDatePeriode('#banpt_start_date', '#banpt_end_date', '#banpt_end_date_danger')
-                checkDatePeriode('#international_start_date', '#international_end_date', '#international_end_date_danger')
+                checkDatePeriode('#international_start_date', '#international_end_date',
+                    '#international_end_date_danger')
 
                 checkForm('.end_date_danger')
             });

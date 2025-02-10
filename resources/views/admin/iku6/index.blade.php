@@ -6,32 +6,31 @@
         <div class=" space-y-5">
             <div class="card">
                 <header class=" card-header noborder">
-                    <div>
-                        <h4 class="card-title">{{ $title }}
-                        </h4>
-                        <p class="text-muted">{{ $subtitle }}
-                        </p>
-                    </div>
+                    <div class="flex items-center justify-between w-full">
+                        <div class="flex-1">
+                            <h4 class="card-title">{{ $title }}</h4>
+                            <p class="text-muted">{{ $subtitle }}</p>
+                        </div>
 
-                    <div>
-                        <a href="{{ route('admin.iku-6.print') }}" target="_blank">
-                            <button class="btn inline-flex justify-center btn-secondary">
+                        <div class="flex gap-2">
+                            <a href="{{ route('admin.iku-3.print') }}" target="_blank">
+                                <button class="btn inline-flex justify-center btn-secondary">
+                                    <span class="flex items-center">
+                                        <iconify-icon class="text-xl ltr:mr-2 rtl:ml-2"
+                                            icon="heroicons-outline:printer"></iconify-icon>
+                                        <span>Cetak</span>
+                                    </span>
+                                </button>
+                            </a>
+                            <button class="btn inline-flex justify-center btn-primary" onclick="openModal()">
                                 <span class="flex items-center">
                                     <iconify-icon class="text-xl ltr:mr-2 rtl:ml-2"
-                                        icon="heroicons-outline:printer"></iconify-icon>
-                                    <span>Cetak</span>
+                                        icon="heroicons-outline:plus-circle"></iconify-icon>
+                                    <span>Tambah</span>
                                 </span>
                             </button>
-                        </a>
-                        <button class="btn inline-flex justify-center btn-primary" onclick="openModal()">
-                            <span class="flex items-center">
-                                <iconify-icon class="text-xl ltr:mr-2 rtl:ml-2"
-                                    icon="heroicons-outline:plus-circle"></iconify-icon>
-                                <span>Tambah</span>
-                            </span>
-                        </button>
+                        </div>
                     </div>
-
                 </header>
                 <div class="card-body px-6 pb-6">
                     @include('admin.partials.alert')
@@ -81,7 +80,9 @@
                                                 <td class="table-td">{{ $item->institution_type }}</td>
                                                 <td class="table-td">{{ $item->select_list->name ?? '' }}</td>
                                                 <td class="table-td">{{ $item->nomor }}</td>
-                                                <td class="table-td">{{ Carbon\Carbon::parse($item->start_date)->format('d M Y') }} s.d. {{ Carbon\Carbon::parse($item->end_date)->format('d M Y') }}</td>
+                                                <td class="table-td">
+                                                    {{ Carbon\Carbon::parse($item->start_date)->format('d M Y') }} s.d.
+                                                    {{ Carbon\Carbon::parse($item->end_date)->format('d M Y') }}</td>
                                                 <td class="table-td">
                                                     <a href="{{ route('show_file', ['path' => 'iku-6', 'id' => $item->id, 'preview' => true]) }}"
                                                         class="text-primary hover:underline"
@@ -141,7 +142,7 @@
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
                                             d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10
-                                                                                                                                                                                                                                                                                                            11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                                                                                                                                                                                                                                                                                    11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                                             clip-rule="evenodd"></path>
                                     </svg>
                                     <span class="sr-only">Close modal</span>
@@ -201,7 +202,8 @@
                                         <!-- Start Date -->
                                         <div class="input-group">
                                             <label for="start_date"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Waktu Mulai</label>
+                                                class="text-sm font-Inter font-normal text-slate-900 block">Waktu
+                                                Mulai</label>
                                             <input type="date" id="start_date" name="start_date"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
                                                 placeholder="Masukkan waktu" required>
@@ -209,17 +211,20 @@
                                         <!-- End Date -->
                                         <div class="input-group">
                                             <label for="end_date"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Waktu Akhir</label>
+                                                class="text-sm font-Inter font-normal text-slate-900 block">Waktu
+                                                Akhir</label>
                                             <input type="date" id="end_date" name="end_date"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
                                                 placeholder="Masukkan waktu" required>
-                                            <p id="end_date_danger" class="text-danger-500 hidden end_date_danger">Waktu akhir tidak boleh melebihi waktu mulai</p>
+                                            <p id="end_date_danger" class="text-danger-500 hidden end_date_danger">Waktu
+                                                akhir tidak boleh melebihi waktu mulai</p>
                                         </div>
 
                                         <!-- File -->
                                         <div class="input-group">
                                             <label for="file"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Berkas Pendukung</label>
+                                                class="text-sm font-Inter font-normal text-slate-900 block">Berkas
+                                                Pendukung</label>
                                             <input type="file" id="file" name="file"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
                                                 required>
