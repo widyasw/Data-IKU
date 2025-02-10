@@ -2,11 +2,15 @@
 
 namespace App\Helpers;
 
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Illuminate\Support\Facades\View;
+use Symfony\Component\HttpFoundation\Response;
 
 class HelperPublic
 {
@@ -81,5 +85,27 @@ class HelperPublic
         $response->headers->set('Cache-Control', 'max-age=0');
 
         return $response;
+    }
+
+    public static function exportPDF($title, $subtitle, array $headers, $data, $isPreview = false) {
+        // Konversi data ke tampilan HTML
+        $html = View::make('exports.pdf', compact('title', 'subtitle', 'headers', 'data'))->render();
+
+        // Konfigurasi Dompdf
+        $options = new Options();
+        $options->set('defaultFont', 'Arial');
+        $dompdf = new Dompdf($options);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'landscape'); // Ubah ukuran kertas & orientasi jika diperlukan
+        $dompdf->render();
+
+        // Tentukan output PDF (preview atau download)
+        $filename = time() . '_' . str_replace(' ', '_', $title) . '.pdf';
+        $outputMode = $isPreview ? 'inline' : 'attachment';
+
+        return new Response($dompdf->output(), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => "{$outputMode}; filename=\"{$filename}\""
+        ]);
     }
 }

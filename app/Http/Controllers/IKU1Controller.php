@@ -150,4 +150,30 @@ class IKU1Controller extends Controller
             $headers,
             $dataIKU);
     }
+
+    public function printPdf(Request $request)
+    {
+        $isPreview = $request->preview ? true : false;
+        $headers = [
+            'No', 'Nama', 'NIM', 'Jenis Kegiatan', 'Deskripsi', 'Berkas Pendukung'
+        ];
+
+        $dataIKU = IKU1::query()->with('select_list')->get()->map(function ($item, $key) {
+            return [
+                $key + 1,
+                $item->name,
+                $item->nim,
+                $item->select_list->name,
+                $item->description,
+                route('show_file', ['path' => 'iku-1', 'id' => $item->id, 'preview' => true]),
+            ];
+        });
+
+        return HelperPublic::exportPDF(
+            'Data Indikator Kinerja Utama 1',
+            'Lulusan berhasil mendapat pekerjaan yang layak, melanjutkan studi, atau menjadi wiraswasta.',
+            $headers,
+            $dataIKU,
+            $isPreview);
+    }
 }
