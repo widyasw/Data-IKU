@@ -45,10 +45,12 @@ Route::middleware('language')->group(function () {
         return redirect('login');
     });
 
-    // Dashboard routes
+    // Show file
+    Route::get('/show-file/{path}/{id}', [DashboardController::class, 'show_file'])->name('show_file');
+
+    // Dashboard
     Route::middleware('auth', 'verified')->controller(DashboardController::class)->group(function () {
         Route::get('/dashboard', 'index')->name('dashboard');
-        Route::get('/show-file/{path}/{id}', 'show_file')->name('show_file');
     });
 
 
@@ -64,7 +66,6 @@ Route::middleware('language')->group(function () {
         Route::prefix('iku-1')->name('iku-1.')->group(function () {
             Route::get('/', [IKU1Controller::class, 'index'])->name('index');
             Route::get('/cetak', [IKU1Controller::class, 'print'])->name('print');
-            Route::get('/cetak-pdf', [IKU1Controller::class, 'printPdf'])->name('print-pdf');
             Route::post('/', [IKU1Controller::class, 'store'])->name('store');
             Route::put('/{iku1}', [IKU1Controller::class, 'update'])->name('update');
             Route::delete('/{iku1}', [IKU1Controller::class, 'destroy'])->name('destroy');

@@ -139,8 +139,14 @@ class IKU3Controller extends Controller
         return redirect()->back()->with(['color' => 'bg-success-500', 'message' => __('Berhasil menghapus data')]);
     }
 
-    public function print()
+    public function print(Request $request)
     {
+        $type = $request->type;
+        $isPreview = $request->preview ? true : false;
+
+        $title = 'Data Indikator Kinerja Utama 3';
+        $subtitle = 'Dosen yang berkegiatan tridharma di perguruan tinggi lain, berkegiatan tridharma di QS100 berdasarkan bidang ilmu (QS100 by subject), bekerja sebagai praktisi di dunia industri, atau membina mahasiswa yang berhasil meraih prestasi paling rendah tingkat nasional dalam 5 (lima) tahun terakhir.';
+
         $headers = [
             'No',
             'Nama',
@@ -161,15 +167,25 @@ class IKU3Controller extends Controller
                 $item->location,
                 Carbon::parse($item->start_date)->format('d M Y') . ' s.d ' . Carbon::parse($item->end_date)->format('d M Y'),
                 $item->description,
-                route('show_file', ['path' => 'iku-4', 'id' => $item->id, 'preview' => true]),
+                route('show_file', ['path' => 'iku-3', 'id' => $item->id, 'preview' => true]),
             ];
         });
 
-        return HelperPublic::export(
-            'Data Indikator Kinerja Utama 3',
-            'Dosen yang berkegiatan tridharma di perguruan tinggi lain, berkegiatan tridharma di QS100 berdasarkan bidang ilmu (QS100 by subject), bekerja sebagai praktisi di dunia industri, atau membina mahasiswa yang berhasil meraih prestasi paling rendah tingkat nasional dalam 5 (lima) tahun terakhir.',
-            $headers,
-            $dataIKU
-        );
+        if ($type == 'excel') {
+            return HelperPublic::export(
+                $title,
+                $subtitle,
+                $headers,
+                $dataIKU);
+        } else if ($type == 'pdf') {
+            return HelperPublic::exportPDF(
+                $title,
+                $subtitle,
+                $headers,
+                $dataIKU,
+                $isPreview);
+        } else {
+            return abort(404);
+        }
     }
 }

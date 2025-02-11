@@ -162,8 +162,14 @@ class IKU8Controller extends Controller
         return redirect()->back()->with(['color' => 'bg-success-500', 'message' => __('Berhasil menghapus data')]);
     }
 
-    public function print()
+    public function print(Request $request)
     {
+        $type = $request->type;
+        $isPreview = $request->preview ? true : false;
+
+        $title = 'Data Indikator Kinerja Utama 8';
+        $subtitle = 'Program studi yang memiliki akreditasi atau sertifikat internasional yang diakui pemerintah.';
+
         // header untuk export excel
         $headers = [
             'No', 'Nama program studi', 'Akreditasi BAN-PT', 'Masa Berlaku', 'Akreditasi Internasional', 'Masa Berlaku', 'Berkas Pendukung'
@@ -182,11 +188,22 @@ class IKU8Controller extends Controller
             ];
         });
 
-        // export data ke excel, cek class lebih detail
-        return HelperPublic::export(
-            'Data Indikator Kinerja Utama 8',
-            'Program studi yang memiliki akreditasi atau sertifikat internasional yang diakui pemerintah.',
-            $headers,
-            $dataIKU);
+        // export data ke excel/pdf, cek class lebih detail
+        if ($type == 'excel') {
+            return HelperPublic::export(
+                $title,
+                $subtitle,
+                $headers,
+                $dataIKU);
+        } else if ($type == 'pdf') {
+            return HelperPublic::exportPDF(
+                $title,
+                $subtitle,
+                $headers,
+                $dataIKU,
+                $isPreview);
+        } else {
+            return abort(404);
+        }
     }
 }

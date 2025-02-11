@@ -135,8 +135,14 @@ class IKU6Controller extends Controller
         return redirect()->back()->with(['color' => 'bg-success-500', 'message' => __('Berhasil menghapus data')]);
     }
 
-    public function print()
+    public function print(Request $request)
     {
+        $type = $request->type;
+        $isPreview = $request->preview ? true : false;
+
+        $title = 'Data Indikator Kinerja Utama 6';
+        $subtitle = 'Program studi bekerja sama dengan mitra kelas dunia.';
+
         $headers = [
             'No', 'Nama Mitra', 'Jenis Lembaga', 'Jenis Berkas', 'Nomor', 'Jangka Waktu', 'Berkas Pendukung'
         ];
@@ -153,10 +159,21 @@ class IKU6Controller extends Controller
             ];
         });
 
-        return HelperPublic::export(
-            'Data Indikator Kinerja Utama 6',
-            'Program studi bekerja sama dengan mitra kelas dunia.',
-            $headers,
-            $dataIKU);
+        if ($type == 'excel') {
+            return HelperPublic::export(
+                $title,
+                $subtitle,
+                $headers,
+                $dataIKU);
+        } else if ($type == 'pdf') {
+            return HelperPublic::exportPDF(
+                $title,
+                $subtitle,
+                $headers,
+                $dataIKU,
+                $isPreview);
+        } else {
+            return abort(404);
+        }
     }
 }

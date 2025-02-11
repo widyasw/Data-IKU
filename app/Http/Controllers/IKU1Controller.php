@@ -127,33 +127,14 @@ class IKU1Controller extends Controller
         return redirect()->back()->with(['color' => 'bg-success-500', 'message' => __('Berhasil menghapus data')]);
     }
 
-    public function print()
+    public function print(Request $request)
     {
-        $headers = [
-            'No', 'Nama', 'NIM', 'Jenis Kegiatan', 'Deskripsi', 'Berkas Pendukung'
-        ];
-
-        $dataIKU = IKU1::query()->with('select_list')->get()->map(function ($item, $key) {
-            return [
-                $key + 1,
-                $item->name,
-                $item->nim,
-                $item->select_list->name,
-                $item->description,
-                route('show_file', ['path' => 'iku-1', 'id' => $item->id, 'preview' => true]),
-            ];
-        });
-
-        return HelperPublic::export(
-            'Data Indikator Kinerja Utama 1',
-            'Lulusan berhasil mendapat pekerjaan yang layak, melanjutkan studi, atau menjadi wiraswasta.',
-            $headers,
-            $dataIKU);
-    }
-
-    public function printPdf(Request $request)
-    {
+        $type = $request->type;
         $isPreview = $request->preview ? true : false;
+
+        $title = 'Data Indikator Kinerja Utama 1';
+        $subtitle = 'Lulusan berhasil mendapat pekerjaan yang layak, melanjutkan studi, atau menjadi wiraswasta.';
+
         $headers = [
             'No', 'Nama', 'NIM', 'Jenis Kegiatan', 'Deskripsi', 'Berkas Pendukung'
         ];
@@ -169,11 +150,21 @@ class IKU1Controller extends Controller
             ];
         });
 
-        return HelperPublic::exportPDF(
-            'Data Indikator Kinerja Utama 1',
-            'Lulusan berhasil mendapat pekerjaan yang layak, melanjutkan studi, atau menjadi wiraswasta.',
-            $headers,
-            $dataIKU,
-            $isPreview);
+        if ($type == 'excel') {
+            return HelperPublic::export(
+                $title,
+                $subtitle,
+                $headers,
+                $dataIKU);
+        } else if ($type == 'pdf') {
+            return HelperPublic::exportPDF(
+                $title,
+                $subtitle,
+                $headers,
+                $dataIKU,
+                $isPreview);
+        } else {
+            return abort(404);
+        }
     }
 }

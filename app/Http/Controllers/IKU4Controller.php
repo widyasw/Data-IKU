@@ -126,8 +126,14 @@ class IKU4Controller extends Controller
         return redirect()->back()->with(['color' => 'bg-success-500', 'message' => __('Berhasil menghapus data')]);
     }
 
-    public function print()
+    public function print(Request $request)
     {
+        $type = $request->type;
+        $isPreview = $request->preview ? true : false;
+
+        $title = 'Data Indikator Kinerja Utama 4';
+        $subtitle = 'Dosen yang berkualifikasi S3, memiliki sertifikat kompetensi atau profesi, atau berpengalaman kerja sebagai praktisi.';
+
         $headers = [
             'No', 'Nama', 'NIP', 'Jenis Kegiatan', 'Deskripsi', 'Berkas Pendukung'
         ];
@@ -143,10 +149,21 @@ class IKU4Controller extends Controller
             ];
         });
 
-        return HelperPublic::export(
-            'Data Indikator Kinerja Utama 4',
-            'Lulusan berhasil mendapat pekerjaan yang layak, melanjutkan studi, atau menjadi wiraswasta.',
-            $headers,
-            $dataIKU);
+        if ($type == 'excel') {
+            return HelperPublic::export(
+                $title,
+                $subtitle,
+                $headers,
+                $dataIKU);
+        } else if ($type == 'pdf') {
+            return HelperPublic::exportPDF(
+                $title,
+                $subtitle,
+                $headers,
+                $dataIKU,
+                $isPreview);
+        } else {
+            return abort(404);
+        }
     }
 }

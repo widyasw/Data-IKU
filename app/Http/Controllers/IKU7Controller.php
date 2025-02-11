@@ -126,8 +126,14 @@ class IKU7Controller extends Controller
         return redirect()->back()->with(['color' => 'bg-success-500', 'message' => __('Berhasil menghapus data')]);
     }
 
-    public function print()
+    public function print(Request $request)
     {
+        $type = $request->type;
+        $isPreview = $request->preview ? true : false;
+
+        $title = 'Data Indikator Kinerja Utama 7';
+        $subtitle = 'Kelas yang kolaboratif dan partisipatif yang menggunakan pemecahan kasus (case method) atau pembelajaran kelompok berbasis project (team-based project) sebagai bagian dari bobot evaluasi.';
+
         $headers = [
             'No', 'Nama Mata Kuliah', 'Jumlah SKS', 'Metode pembelajaran', 'Output', 'Berkas Pendukung'
         ];
@@ -143,11 +149,22 @@ class IKU7Controller extends Controller
             ];
         });
 
-        return HelperPublic::export(
-            'Data Indikator Kinerja Utama 7',
-            'Kelas yang kolaboratif dan partisipatif yang menggunakan pemecahan kasus (case method) atau pembelajaran kelompok berbasis project (team-based project) sebagai bagian dari bobot evaluasi.',
-            $headers,
-            $dataIKU);
+        if ($type == 'excel') {
+            return HelperPublic::export(
+                $title,
+                $subtitle,
+                $headers,
+                $dataIKU);
+        } else if ($type == 'pdf') {
+            return HelperPublic::exportPDF(
+                $title,
+                $subtitle,
+                $headers,
+                $dataIKU,
+                $isPreview);
+        } else {
+            return abort(404);
+        }
     }
 }
 
