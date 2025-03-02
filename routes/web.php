@@ -114,15 +114,33 @@ Route::middleware('language')->group(function () {
             Route::delete('/{iku7}', [IKU7Controller::class, 'destroy'])->name('destroy')->can('iku 7 hapus');
         });
         Route::prefix('iku-8')->name('iku-8.')->group(function () {
-            Route::get('/', [IKU8Controller::class, 'index'])->name('index');
+            Route::get('/', [IKU8Controller::class, 'index'])->name('index')->can('iku 8 lihat');
             Route::get('/cetak', [IKU8Controller::class, 'print'])->name('print')->can('iku 8 lihat');
-            Route::post('/', [IKU8Controller::class, 'store'])->name('store');
-            Route::put('/{iku8}', [IKU8Controller::class, 'update'])->name('update');
-            Route::delete('/{iku8}', [IKU8Controller::class, 'destroy'])->name('destroy');
+            Route::post('/', [IKU8Controller::class, 'store'])->name('store')->can('iku 8 tambah');
+            Route::put('/{iku8}', [IKU8Controller::class, 'update'])->name('update')->can('iku 8 edit');
+            Route::delete('/{iku8}', [IKU8Controller::class, 'destroy'])->name('destroy')->can('iku 8 hapus');
         });
 
-        Route::resource('user', UserController::class);
-        Route::resource('role', RoleController::class);
+        Route::prefix('user')->name('user.')->group(function () {
+            Route::get('/', [UserController::class, 'index'])->name('index')->can('user lihat');
+            Route::get('/create', [UserController::class, 'create'])->name('create')->can('user tambah');
+            Route::post('/', [UserController::class, 'store'])->name('store')->can('user tambah');
+            Route::get('/{user}', [UserController::class, 'show'])->name('show')->can('user lihat');
+            Route::get('/{user}/edit', [UserController::class, 'edit'])->name('edit')->can('user edit');
+            Route::put('/{user}', [UserController::class, 'update'])->name('update')->can('user edit');
+            Route::delete('/{user}', [UserController::class, 'destroy'])->name('destroy')->can('user hapus');
+        });
+
+        Route::prefix('role')->name('role.')->group(function () {
+            Route::get('/', [RoleController::class, 'index'])->name('index')->can('hak akses lihat');
+            Route::get('/create', [RoleController::class, 'create'])->name('create')->can('hak akses tambah');
+            Route::post('/', [RoleController::class, 'store'])->name('store')->can('hak akses tambah');
+            Route::get('/{role}', [RoleController::class, 'show'])->name('show')->can('hak akses lihat');
+            Route::get('/{role}/edit', [RoleController::class, 'edit'])->name('edit')->can('hak akses edit');
+            Route::put('/{role}', [RoleController::class, 'update'])->name('update')->can('hak akses edit');
+            Route::delete('/{role}', [RoleController::class, 'destroy'])->name('destroy')->can('hak akses hapus');
+        });
+
     });
 });
 
