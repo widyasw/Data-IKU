@@ -20,7 +20,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $role = auth()->user()->role;
+        $role = 'admin';
 
         return redirect()->route($role . '.dashboard');
     }

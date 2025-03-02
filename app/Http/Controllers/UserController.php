@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Str;
 use Laravolt\Avatar\Avatar;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -38,7 +39,8 @@ class UserController extends Controller
             ['Create', false],
         ];
         $title = 'Create User';
-        return view('admin.user.create', compact('breadcrumbs', 'title'));
+        $roles = Role::all();
+        return view('admin.user.create', compact('breadcrumbs', 'title', 'roles'));
     }
 
     /**
@@ -50,6 +52,7 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'role' => ['required', 'exists:roles,id'],
         ]);
 
         try {
@@ -68,6 +71,8 @@ class UserController extends Controller
             $avatar->create($user->name)->save('uploads/' . $image);
 
             $user->update(['profile_photo' => $image]);
+            $roleName = Role::findOrFail($request->role)->name;
+            $user->syncRoles([$roleName]);
             DB::commit();
         } catch (Exception $e) {
             DB::rollback();
@@ -87,7 +92,10 @@ class UserController extends Controller
         ];
         $title = $user->name;
         $editable = false;
-        return view('admin.user.edit', compact('breadcrumbs', 'title', 'user', 'editable'));
+
+        $roles = Role::all();
+
+        return view('admin.user.edit', compact('breadcrumbs', 'title', 'user', 'editable', 'roles'));
     }
 
     /**
@@ -101,7 +109,10 @@ class UserController extends Controller
         ];
         $title = $user->name;
         $editable = true;
-        return view('admin.user.edit', compact('breadcrumbs', 'title', 'user', 'editable'));
+
+        $roles = Role::all();
+
+        return view('admin.user.edit', compact('breadcrumbs', 'title', 'user', 'editable', 'roles'));
     }
 
     /**
@@ -113,6 +124,7 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
             'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
+            'role' => ['required', 'exists:roles,id'],
         ]);
 
         try {
@@ -125,6 +137,8 @@ class UserController extends Controller
             }
 
             $user->update($validated);
+            $roleName = Role::findOrFail($request->role)->name;
+            $user->syncRoles([$roleName]);
 
             DB::commit();
 

@@ -13,6 +13,7 @@
                         </div>
 
                         <div class="flex gap-2">
+                            @can('iku 3 cetak')
                             <div class="dropdown relative">
                                 <button class="btn inline-flex justify-center btn-secondary items-center" type="button"
                                     id="bottomDropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -47,6 +48,8 @@
                                     </li>
                                 </ul>
                             </div>
+                            @endcan
+                            @can('iku 3 tambah')
                             <button class="btn inline-flex justify-center btn-primary" onclick="openModal()">
                                 <span class="flex items-center">
                                     <iconify-icon class="text-xl ltr:mr-2 rtl:ml-2"
@@ -54,6 +57,7 @@
                                     <span>Tambah</span>
                                 </span>
                             </button>
+                            @endcan
                         </div>
                     </div>
                 </header>
@@ -119,11 +123,14 @@
                                                 </td>
                                                 <td class="table-td ">
                                                     <div class="flex space-x-3 rtl:space-x-reverse">
+                                                        @can('iku 3 edit')
                                                         <button class="toolTip onTop justify-center action-btn"
                                                             data-tippy-content="Edit" data-tippy-theme="info"
                                                             onclick="edit({{ $item }})">
                                                             <iconify-icon icon="heroicons:pencil-square"></iconify-icon>
                                                         </button>
+                                                        @endcan
+                                                        @can('iku 3 hapus')
                                                         <form id="delete-form-{{ $item->id }}"
                                                             action="{{ route('admin.iku-3.destroy', $item->id) }}"
                                                             method="POST">
@@ -136,6 +143,7 @@
                                                                 <iconify-icon icon="heroicons:trash"></iconify-icon>
                                                             </button>
                                                         </form>
+                                                        @endcan
                                                     </div>
                                                 </td>
                                             </tr>

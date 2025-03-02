@@ -24,11 +24,7 @@ class ProfileController extends Controller
         ];
         $title = 'Profile';
 
-        if (auth()->user()->role == 'admin') {
-            return view('admin.profile.index', compact('user', 'breadcrumbs', 'title'));
-        } else {
-            dd('Not Implemented');
-        }
+        return view('admin.profile.index', compact('user', 'breadcrumbs', 'title'));
     }
 
     /**
