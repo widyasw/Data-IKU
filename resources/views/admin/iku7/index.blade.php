@@ -9,10 +9,11 @@
                     <div class="flex items-center justify-between w-full">
                         <div class="flex-1">
                             <h4 class="card-title">{{ $title }}</h4>
-                            <p class="text-muted">{{ $subtitle }}</p>
+                            <p class="text-muted dark:text-white">{{ $subtitle }}</p>
                         </div>
 
                         <div class="flex gap-2">
+                            @can('iku 7 cetak')
                             <div class="dropdown relative">
                                 <button class="btn inline-flex justify-center btn-secondary items-center" type="button"
                                     id="bottomDropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -47,6 +48,8 @@
                                     </li>
                                 </ul>
                             </div>
+                            @endcan
+                            @can('iku 7 tambah')
                             <button class="btn inline-flex justify-center btn-primary" onclick="openModal()">
                                 <span class="flex items-center">
                                     <iconify-icon class="text-xl ltr:mr-2 rtl:ml-2"
@@ -54,6 +57,7 @@
                                     <span>Tambah</span>
                                 </span>
                             </button>
+                            @endcan
                         </div>
                     </div>
                 </header>
@@ -94,7 +98,7 @@
                                         </tr>
                                     </thead>
                                     <tbody
-                                        class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700">
+                                        class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700 dark:text-white">
                                         @foreach ($items as $key => $item)
                                             <tr>
                                                 <td class="table-td">{{ $key + 1 }}</td>
@@ -109,11 +113,14 @@
                                                 </td>
                                                 <td class="table-td ">
                                                     <div class="flex space-x-3 rtl:space-x-reverse">
+                                                        @can('iku 7 edit')
                                                         <button class="toolTip onTop justify-center action-btn"
                                                             data-tippy-content="Edit" data-tippy-theme="info"
                                                             onclick="edit({{ $item }})">
                                                             <iconify-icon icon="heroicons:pencil-square"></iconify-icon>
                                                         </button>
+                                                        @endcan
+                                                        @can('iku 7 hapus')
                                                         <form id="delete-form-{{ $item->id }}"
                                                             action="{{ route('admin.iku-7.destroy', $item->id) }}"
                                                             method="POST">
@@ -126,6 +133,7 @@
                                                                 <iconify-icon icon="heroicons:trash"></iconify-icon>
                                                             </button>
                                                         </form>
+                                                        @endcan
                                                     </div>
                                                 </td>
                                             </tr>
@@ -176,7 +184,7 @@
                                         <!-- Name -->
                                         <div class="input-group">
                                             <label for="name"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Nama Mata
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Nama Mata
                                                 Kuliah</label>
                                             <input type="text" id="name" name="name"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
@@ -186,7 +194,7 @@
                                         <!-- Jumlah SKS -->
                                         <div class="input-group">
                                             <label for="credit_hours"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Jumlah
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Jumlah
                                                 SKS</label>
                                             <input type="number" id="credit_hours" name="credit_hours"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
@@ -196,7 +204,7 @@
                                         <!-- Select -->
                                         <div class="input-group">
                                             <label for="select_id"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Jenis
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Jenis
                                                 Berkas</label>
                                             <select id="select_id" name="select_id"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
@@ -211,7 +219,7 @@
                                         <!-- Output -->
                                         <div class="input-group">
                                             <label for="output"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Output
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Output
                                             </label>
                                             <input type="text" id="output" name="output"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
@@ -221,7 +229,7 @@
                                         <!-- File -->
                                         <div class="input-group">
                                             <label for="file"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Berkas
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Berkas
                                                 Pendukung</label>
                                             <input type="file" id="file" name="file"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"

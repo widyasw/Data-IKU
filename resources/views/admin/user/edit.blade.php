@@ -41,16 +41,13 @@
                         </div>
                     @endif
                     <div>
-                        @php
-                            $roles = ['admin'];
-                        @endphp
                         <label for="role" class="form-label">Role <x-required /></label>
                         <select name="role" id="role" class="select2 form-control w-full mt-2 py-2"
                             {{ !$editable ? 'disabled' : '' }}>
-                            @foreach ($roles as $rol)
-                                <option value="{{ $rol }}" {{ $rol === $user->role ? 'selected' : '' }}
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->id }}" @selected($user->hasRole($role->name))
                                     class=" inline-block font-Inter font-normal text-sm text-slate-600">
-                                    {{ $rol }}</option>
+                                    {{ $role->name }}</option>
                             @endforeach
                         </select>
                     </div>

@@ -44,7 +44,7 @@
                                         </tr>
                                     </thead>
                                     <tbody
-                                        class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700">
+                                        class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700 dark:text-white">
                                         @foreach ($users as $key => $user)
                                             <tr>
                                                 <td class="table-td">{{ $key + 1 }}</td>

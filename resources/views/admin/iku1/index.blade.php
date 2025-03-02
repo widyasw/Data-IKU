@@ -9,51 +9,55 @@
                     <div class="flex items-center justify-between w-full">
                         <div class="flex-1">
                             <h4 class="card-title">{{ $title }}</h4>
-                            <p class="text-muted">{{ $subtitle }}</p>
+                            <p class="text-muted dark:text-white">{{ $subtitle }}</p>
                         </div>
 
                         <div class="flex gap-2">
-                            <div class="dropdown relative">
-                                <button class="btn inline-flex justify-center btn-secondary items-center" type="button"
-                                    id="bottomDropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Export
-                                    <iconify-icon class="text-xl ltr:ml-2 rtl:mr-2"
-                                        icon="ic:round-keyboard-arrow-down"></iconify-icon>
-                                </button>
-                                <ul
-                                    class=" dropdown-menu min-w-max absolute text-sm text-slate-700 dark:text-white hidden bg-white dark:bg-slate-700 shadow
+                            @can('iku 1 cetak')
+                                <div class="dropdown relative">
+                                    <button class="btn inline-flex justify-center btn-secondary items-center" type="button"
+                                        id="bottomDropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Export
+                                        <iconify-icon class="text-xl ltr:ml-2 rtl:mr-2"
+                                            icon="ic:round-keyboard-arrow-down"></iconify-icon>
+                                    </button>
+                                    <ul
+                                        class=" dropdown-menu min-w-max absolute text-sm text-slate-700 dark:text-white hidden bg-white dark:bg-slate-700 shadow
                                             z-[2] float-left overflow-hidden list-none text-left rounded-lg mt-1 m-0 bg-clip-padding border-none">
-                                    <li>
-                                        <a href="{{ route('admin.iku-1.print', ['type' => 'pdf']) }}" target="_blank"
-                                            class="text-slate-600 dark:text-white block font-Inter font-normal px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600
+                                        <li>
+                                            <a href="{{ route('admin.iku-1.print', ['type' => 'pdf']) }}" target="_blank"
+                                                class="text-slate-600 dark:text-white block font-Inter font-normal px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600
                                                     dark:hover:text-white">
-                                            Download PDF
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('admin.iku-1.print', ['type' => 'pdf', 'preview' => true]) }}"
-                                            target="_blank"
-                                            class="text-slate-600 dark:text-white block font-Inter font-normal px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600
+                                                Download PDF
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('admin.iku-1.print', ['type' => 'pdf', 'preview' => true]) }}"
+                                                target="_blank"
+                                                class="text-slate-600 dark:text-white block font-Inter font-normal px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600
                                                     dark:hover:text-white">
-                                            Preview PDF
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('admin.iku-1.print', ['type' => 'excel']) }}" target="_blank"
-                                            class="text-slate-600 dark:text-white block font-Inter font-normal px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600
+                                                Preview PDF
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('admin.iku-1.print', ['type' => 'excel']) }}" target="_blank"
+                                                class="text-slate-600 dark:text-white block font-Inter font-normal px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600
                                                     dark:hover:text-white">
-                                            Download Excel
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <button class="btn inline-flex justify-center btn-primary" onclick="openModal()">
-                                <span class="flex items-center">
-                                    <iconify-icon class="text-xl ltr:mr-2 rtl:ml-2"
-                                        icon="heroicons-outline:plus-circle"></iconify-icon>
-                                    <span>Tambah</span>
-                                </span>
-                            </button>
+                                                Download Excel
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            @endcan
+                            @can('iku 1 tambah')
+                                <button class="btn inline-flex justify-center btn-primary" onclick="openModal()">
+                                    <span class="flex items-center">
+                                        <iconify-icon class="text-xl ltr:mr-2 rtl:ml-2"
+                                            icon="heroicons-outline:plus-circle"></iconify-icon>
+                                        <span>Tambah</span>
+                                    </span>
+                                </button>
+                            @endcan
                         </div>
                     </div>
                 </header>
@@ -94,7 +98,7 @@
                                         </tr>
                                     </thead>
                                     <tbody
-                                        class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700">
+                                        class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700 dark:text-white">
                                         @foreach ($items as $key => $item)
                                             <tr>
                                                 <td class="table-td">{{ $key + 1 }}</td>
@@ -109,11 +113,14 @@
                                                 </td>
                                                 <td class="table-td ">
                                                     <div class="flex space-x-3 rtl:space-x-reverse">
+                                                        @can('iku 1 edit')
                                                         <button class="toolTip onTop justify-center action-btn"
                                                             data-tippy-content="Edit" data-tippy-theme="info"
                                                             onclick="edit({{ $item }})">
                                                             <iconify-icon icon="heroicons:pencil-square"></iconify-icon>
                                                         </button>
+                                                        @endcan
+                                                        @can('iku 1 hapus')
                                                         <form id="delete-form-{{ $item->id }}"
                                                             action="{{ route('admin.iku-1.destroy', $item->id) }}"
                                                             method="POST">
@@ -126,6 +133,7 @@
                                                                 <iconify-icon icon="heroicons:trash"></iconify-icon>
                                                             </button>
                                                         </form>
+                                                        @endcan
                                                     </div>
                                                 </td>
                                             </tr>
@@ -161,7 +169,7 @@
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
                                             d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10
-                                                                                                                                                                                                                                                                                                                        11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                                                                                                                                                                                                                                                                                            11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                                             clip-rule="evenodd"></path>
                                     </svg>
                                     <span class="sr-only">Close modal</span>
@@ -176,7 +184,7 @@
                                         <!-- Name -->
                                         <div class="input-group">
                                             <label for="name"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Nama</label>
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Nama</label>
                                             <input type="text" id="name" name="name"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
                                                 placeholder="Masukkan nama" required>
@@ -185,7 +193,7 @@
                                         <!-- NIM -->
                                         <div class="input-group">
                                             <label for="nim"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">NIM</label>
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">NIM</label>
                                             <input type="text" id="nim" name="nim"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
                                                 placeholder="Masukkan NIM" required>
@@ -194,7 +202,7 @@
                                         <!-- Select -->
                                         <div class="input-group">
                                             <label for="select_id"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Jenis
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Jenis
                                                 Kegiatan</label>
                                             <select id="select_id" name="select_id"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
@@ -209,7 +217,7 @@
                                         <!-- Description -->
                                         <div class="input-group">
                                             <label for="description"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Deskripsi</label>
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Deskripsi</label>
                                             <textarea id="description" name="description"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
                                                 rows="4" placeholder="Enter deskripsi" required></textarea>
@@ -218,7 +226,7 @@
                                         <!-- Berkas Pendukung -->
                                         <div class="input-group">
                                             <label for="file"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Berkas
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Berkas
                                                 Pendukung</label>
                                             <input type="file" id="file" name="file"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"

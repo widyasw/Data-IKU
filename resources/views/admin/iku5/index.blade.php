@@ -9,10 +9,11 @@
                     <div class="flex items-center justify-between w-full">
                         <div class="flex-1">
                             <h4 class="card-title">{{ $title }}</h4>
-                            <p class="text-muted">{{ $subtitle }}</p>
+                            <p class="text-muted dark:text-white">{{ $subtitle }}</p>
                         </div>
 
                         <div class="flex gap-2">
+                            @can('iku 5 cetak')
                             <div class="dropdown relative">
                                 <button class="btn inline-flex justify-center btn-secondary items-center" type="button"
                                     id="bottomDropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -47,6 +48,8 @@
                                     </li>
                                 </ul>
                             </div>
+                            @endcan
+                            @can('iku 5 tambah')
                             <button class="btn inline-flex justify-center btn-primary" onclick="openModal()">
                                 <span class="flex items-center">
                                     <iconify-icon class="text-xl ltr:mr-2 rtl:ml-2"
@@ -54,6 +57,7 @@
                                     <span>Tambah</span>
                                 </span>
                             </button>
+                            @endcan
                         </div>
                     </div>
                 </header>
@@ -100,7 +104,7 @@
                                         </tr>
                                     </thead>
                                     <tbody
-                                        class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700">
+                                        class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700 dark:text-white">
                                         @foreach ($items as $key => $item)
                                             <tr>
                                                 <td class="table-td">{{ $key + 1 }}</td>
@@ -117,11 +121,14 @@
                                                 </td>
                                                 <td class="table-td ">
                                                     <div class="flex space-x-3 rtl:space-x-reverse">
+                                                        @can('iku 5 edit')
                                                         <button class="toolTip onTop justify-center action-btn"
                                                             data-tippy-content="Edit" data-tippy-theme="info"
                                                             onclick="edit({{ $item }})">
                                                             <iconify-icon icon="heroicons:pencil-square"></iconify-icon>
                                                         </button>
+                                                        @endcan
+                                                        @can('iku 5 hapus')
                                                         <form id="delete-form-{{ $item->id }}"
                                                             action="{{ route('admin.iku-5.destroy', $item->id) }}"
                                                             method="POST">
@@ -134,6 +141,7 @@
                                                                 <iconify-icon icon="heroicons:trash"></iconify-icon>
                                                             </button>
                                                         </form>
+                                                        @endcan
                                                     </div>
                                                 </td>
                                             </tr>
@@ -184,7 +192,7 @@
                                         <!-- Name -->
                                         <div class="input-group">
                                             <label for="name"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Nama</label>
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Nama</label>
                                             <input type="text" id="name" name="name"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
                                                 placeholder="Masukkan nama" required>
@@ -193,7 +201,7 @@
                                         <!-- NIP -->
                                         <div class="input-group">
                                             <label for="nip"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">NIP</label>
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">NIP</label>
                                             <input type="text" id="nip" name="nip"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
                                                 placeholder="Masukkan NIP" required>
@@ -202,7 +210,7 @@
                                         <!-- Jenis Kegiatan -->
                                         <div class="input-group">
                                             <label for="activity_type"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Jenis
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Jenis
                                                 Kegiatan</label>
                                             <input type="text" id="activity_type" name="activity_type"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
@@ -212,7 +220,7 @@
                                         <!-- Jenis Kegiatan -->
                                         <div class="input-group">
                                             <label for="summary"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Nama Hasil
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Nama Hasil
                                                 Kerja</label>
                                             <input type="text" id="summary" name="summary"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
@@ -222,7 +230,7 @@
                                         <!-- Description -->
                                         <div class="input-group">
                                             <label for="description"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Deskripsi</label>
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Deskripsi</label>
                                             <textarea id="description" name="description"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
                                                 rows="4" placeholder="Enter deskripsi" required></textarea>
@@ -231,7 +239,7 @@
                                         <!-- Tempat -->
                                         <div class="input-group">
                                             <label for="location"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Tempat</label>
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Tempat</label>
                                             <input type="text" id="location" name="location"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
                                                 placeholder="Masukkan tempat" required>
@@ -240,7 +248,7 @@
                                         <!-- File -->
                                         <div class="input-group">
                                             <label for="file"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Berkas
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Berkas
                                                 Pendukung</label>
                                             <input type="file" id="file" name="file"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"

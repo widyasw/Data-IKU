@@ -9,8 +9,8 @@
                     <h4 class="card-title">{{ $title }}
                     </h4>
 
-                    @can('user tambah')
-                        <a href="{{ route('admin.user.create') }}">
+                    @can('hak akses tambah')
+                        <a href="{{ route('admin.role.create') }}">
                             <button class="btn inline-flex justify-center btn-primary ">
                                 <span class="flex items-center">
                                     <iconify-icon class="text-xl ltr:mr-2 rtl:ml-2"
@@ -38,16 +38,6 @@
                                             <th scope="col" class=" table-th ">
                                                 Name
                                             </th>
-                                            <th scope="col" class=" table-th ">
-                                                Email
-                                            </th>
-                                            <th scope="col" class=" table-th ">
-                                                Role
-                                            </th>
-
-                                            <th scope="col" class=" table-th ">
-                                                Email Verified
-                                            </th>
 
                                             <th scope="col" class=" table-th ">
                                                 Action
@@ -57,45 +47,37 @@
                                     </thead>
                                     <tbody
                                         class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700 dark:text-white">
-                                        @foreach ($users as $key => $user)
+                                        @foreach ($roles as $key => $item)
                                             <tr>
                                                 <td class="table-td">{{ $key + 1 }}</td>
-                                                <td class="table-td">
-                                                    {{ $user->name }}
-                                                </td>
-                                                <td class="table-td"><a
-                                                        href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
-                                                <td class="table-td">{{ $user->getRoleNames()[0] }}</td>
-                                                <td class="table-td">
-                                                    {{ \Carbon\Carbon::parse($user->email_verified_at)->diffForHumans() }}
-                                                </td>
+                                                <td class="table-td">{{ $item->name }}</td>
                                                 <td class="table-td ">
                                                     <div class="flex space-x-3 rtl:space-x-reverse">
-                                                        <a href="{{ route('admin.user.show', $user->id) }}"
+                                                        <a href="{{ route('admin.role.show', $item->id) }}"
                                                             class="toolTip onTop justify-center action-btn"
                                                             data-tippy-content="Show" data-tippy-theme="primary">
                                                             <iconify-icon icon="heroicons:eye"></iconify-icon>
                                                         </a>
-                                                        @can('user edit')
-                                                        <a href="{{ route('admin.user.edit', $user->id) }}"
-                                                            class="toolTip onTop justify-center action-btn"
-                                                            data-tippy-content="Edit" data-tippy-theme="info">
-                                                            <iconify-icon icon="heroicons:pencil-square"></iconify-icon>
-                                                        </a>
+                                                        @can('hak akses edit')
+                                                            <a href="{{ route('admin.role.edit', $item->id) }}"
+                                                                class="toolTip onTop justify-center action-btn"
+                                                                data-tippy-content="Edit" data-tippy-theme="info">
+                                                                <iconify-icon icon="heroicons:pencil-square"></iconify-icon>
+                                                            </a>
                                                         @endcan
-                                                        @can('user hapus')
-                                                        <form id="delete-form-{{ $user->id }}"
-                                                            action="{{ route('admin.user.destroy', $user->id) }}"
-                                                            method="POST">
-                                                            @method('DELETE')
-                                                            @csrf
-                                                            <button
-                                                                class="toolTip onTop justify-center action-btn delete-btn"
-                                                                type="submit" data-tippy-content="Delete"
-                                                                data-tippy-theme="danger" data-id="{{ $user->id }}">
-                                                                <iconify-icon icon="heroicons:trash"></iconify-icon>
-                                                            </button>
-                                                        </form>
+                                                        @can('hak akses hapus')
+                                                            <form id="delete-form-{{ $item->id }}"
+                                                                action="{{ route('admin.role.destroy', $item->id) }}"
+                                                                method="POST">
+                                                                @method('DELETE')
+                                                                @csrf
+                                                                <button
+                                                                    class="toolTip onTop justify-center action-btn delete-btn"
+                                                                    type="submit" data-tippy-content="Delete"
+                                                                    data-tippy-theme="danger" data-id="{{ $item->id }}">
+                                                                    <iconify-icon icon="heroicons:trash"></iconify-icon>
+                                                                </button>
+                                                            </form>
                                                         @endcan
                                                     </div>
                                                 </td>
