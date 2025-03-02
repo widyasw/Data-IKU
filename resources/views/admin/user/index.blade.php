@@ -54,7 +54,7 @@
                                         </tr>
                                     </thead>
                                     <tbody
-                                        class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700">
+                                        class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700 dark:text-white">
                                         @foreach ($users as $key => $user)
                                             <tr>
                                                 <td class="table-td">{{ $key + 1 }}</td>
@@ -79,13 +79,15 @@
                                                             data-tippy-content="Edit" data-tippy-theme="info">
                                                             <iconify-icon icon="heroicons:pencil-square"></iconify-icon>
                                                         </a>
-                                                        <form action="{{ route('admin.user.destroy', $user->id) }}"
+                                                        <form id="delete-form-{{ $user->id }}"
+                                                            action="{{ route('admin.user.destroy', $user->id) }}"
                                                             method="POST">
                                                             @method('DELETE')
                                                             @csrf
-                                                            <button class="toolTip onTop justify-center action-btn"
+                                                            <button
+                                                                class="toolTip onTop justify-center action-btn delete-btn"
                                                                 type="submit" data-tippy-content="Delete"
-                                                                data-tippy-theme="danger">
+                                                                data-tippy-theme="danger" data-id="{{ $user->id }}">
                                                                 <iconify-icon icon="heroicons:trash"></iconify-icon>
                                                             </button>
                                                         </form>
@@ -105,3 +107,30 @@
 
     </div>
 @endsection
+@push('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function() {
+            // Ambil semua tombol delete
+            $(".delete-btn").click(function(event) {
+                event.preventDefault(); // Mencegah submit langsung
+
+                let id = $(this).data("id"); // Ambil ID dari atribut data-id
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "This action cannot be undone!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $(`#delete-form-${id}`).submit(); // Submit form sesuai ID
+                    }
+                });
+            });
+        });
+    </script>
+@endpush

@@ -9,7 +9,7 @@
                     <div class="flex items-center justify-between w-full">
                         <div class="flex-1">
                             <h4 class="card-title">{{ $title }}</h4>
-                            <p class="text-muted">{{ $subtitle }}</p>
+                            <p class="text-muted dark:text-white">{{ $subtitle }}</p>
                         </div>
 
                         <div class="flex gap-2">
@@ -97,7 +97,7 @@
                                         </tr>
                                     </thead>
                                     <tbody
-                                        class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700">
+                                        class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700 dark:text-white">
                                         @foreach ($items as $key => $item)
                                             <tr>
                                                 <td class="table-td">{{ $key + 1 }}</td>
@@ -182,7 +182,7 @@
                                         <!-- Name -->
                                         <div class="input-group">
                                             <label for="name"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Nama
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Nama
                                                 Mitra</label>
                                             <input type="text" id="name" name="name"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
@@ -192,7 +192,7 @@
                                         <!-- Jenis Lembaga -->
                                         <div class="input-group">
                                             <label for="institution_type"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Jenis
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Jenis
                                                 Lembaga</label>
                                             <input type="text" id="institution_type" name="institution_type"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
@@ -202,7 +202,7 @@
                                         <!-- Select -->
                                         <div class="input-group">
                                             <label for="select_id"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Jenis
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Jenis
                                                 Berkas</label>
                                             <select id="select_id" name="select_id"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
@@ -217,7 +217,7 @@
                                         <!-- Nomor -->
                                         <div class="input-group">
                                             <label for="nomor"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Nomor
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Nomor
                                             </label>
                                             <input type="text" id="nomor" name="nomor"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
@@ -227,7 +227,7 @@
                                         <!-- Start Date -->
                                         <div class="input-group">
                                             <label for="start_date"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Waktu
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Waktu
                                                 Mulai</label>
                                             <input type="date" id="start_date" name="start_date"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
@@ -236,7 +236,7 @@
                                         <!-- End Date -->
                                         <div class="input-group">
                                             <label for="end_date"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Waktu
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Waktu
                                                 Akhir</label>
                                             <input type="date" id="end_date" name="end_date"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
@@ -248,7 +248,7 @@
                                         <!-- File -->
                                         <div class="input-group">
                                             <label for="file"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Berkas
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Berkas
                                                 Pendukung</label>
                                             <input type="file" id="file" name="file"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"

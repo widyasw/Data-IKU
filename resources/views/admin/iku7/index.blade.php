@@ -9,7 +9,7 @@
                     <div class="flex items-center justify-between w-full">
                         <div class="flex-1">
                             <h4 class="card-title">{{ $title }}</h4>
-                            <p class="text-muted">{{ $subtitle }}</p>
+                            <p class="text-muted dark:text-white">{{ $subtitle }}</p>
                         </div>
 
                         <div class="flex gap-2">
@@ -94,7 +94,7 @@
                                         </tr>
                                     </thead>
                                     <tbody
-                                        class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700">
+                                        class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700 dark:text-white">
                                         @foreach ($items as $key => $item)
                                             <tr>
                                                 <td class="table-td">{{ $key + 1 }}</td>
@@ -176,7 +176,7 @@
                                         <!-- Name -->
                                         <div class="input-group">
                                             <label for="name"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Nama Mata
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Nama Mata
                                                 Kuliah</label>
                                             <input type="text" id="name" name="name"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
@@ -186,7 +186,7 @@
                                         <!-- Jumlah SKS -->
                                         <div class="input-group">
                                             <label for="credit_hours"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Jumlah
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Jumlah
                                                 SKS</label>
                                             <input type="number" id="credit_hours" name="credit_hours"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
@@ -196,7 +196,7 @@
                                         <!-- Select -->
                                         <div class="input-group">
                                             <label for="select_id"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Jenis
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Jenis
                                                 Berkas</label>
                                             <select id="select_id" name="select_id"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
@@ -211,7 +211,7 @@
                                         <!-- Output -->
                                         <div class="input-group">
                                             <label for="output"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Output
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Output
                                             </label>
                                             <input type="text" id="output" name="output"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
@@ -221,7 +221,7 @@
                                         <!-- File -->
                                         <div class="input-group">
                                             <label for="file"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Berkas
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Berkas
                                                 Pendukung</label>
                                             <input type="file" id="file" name="file"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"

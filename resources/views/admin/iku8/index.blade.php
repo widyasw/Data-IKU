@@ -9,7 +9,7 @@
                     <div class="flex items-center justify-between w-full">
                         <div class="flex-1">
                             <h4 class="card-title">{{ $title }}</h4>
-                            <p class="text-muted">{{ $subtitle }}</p>
+                            <p class="text-muted dark:text-white">{{ $subtitle }}</p>
                         </div>
 
                         <div class="flex gap-2">
@@ -97,7 +97,7 @@
                                         </tr>
                                     </thead>
                                     <tbody
-                                        class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700">
+                                        class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700 dark:text-white">
                                         {{-- list data yang akan ditampilkan --}}
                                         @foreach ($items as $key => $item)
                                             <tr>
@@ -203,7 +203,7 @@
                                         <!-- Name -->
                                         <div class="input-group">
                                             <label for="name"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Nama program
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Nama program
                                                 studi</label>
                                             <input type="text" id="name" name="name"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
@@ -213,7 +213,7 @@
                                         <!-- Akreditasi BAN-PT -->
                                         <div class="input-group">
                                             <label for="banpt_rating"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Akreditasi
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Akreditasi
                                                 BAN-PT</label>
                                             <input type="text" id="banpt_rating" name="banpt_rating"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
@@ -223,7 +223,7 @@
                                         <!-- Start Date -->
                                         <div class="input-group">
                                             <label for="banpt_start_date"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Waktu
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Waktu
                                                 Mulai</label>
                                             <input type="date" id="banpt_start_date" name="banpt_start_date"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
@@ -232,7 +232,7 @@
                                         <!-- End Date -->
                                         <div class="input-group">
                                             <label for="banpt_end_date"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Waktu
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Waktu
                                                 Akhir</label>
                                             <input type="date" id="banpt_end_date" name="banpt_end_date"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
@@ -244,7 +244,7 @@
                                         <!-- Akreditasi Internasional -->
                                         <div class="input-group">
                                             <label for="international_rating"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Akreditasi
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Akreditasi
                                                 Internasional</label>
                                             <input type="text" id="international_rating" name="international_rating"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
@@ -254,7 +254,7 @@
                                         <!-- Start Date -->
                                         <div class="input-group">
                                             <label for="international_start_date"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Waktu
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Waktu
                                                 Mulai</label>
                                             <input type="date" id="international_start_date"
                                                 name="international_start_date"
@@ -264,7 +264,7 @@
                                         <!-- End Date -->
                                         <div class="input-group">
                                             <label for="international_end_date"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Waktu
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Waktu
                                                 Akhir</label>
                                             <input type="date" id="international_end_date"
                                                 name="international_end_date"
@@ -278,7 +278,7 @@
                                         <!-- File -->
                                         <div class="input-group">
                                             <label for="file"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Berkas
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Berkas
                                                 Pendukung</label>
                                             <input type="file" id="file" name="file"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"

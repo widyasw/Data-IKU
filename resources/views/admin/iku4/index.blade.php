@@ -9,7 +9,7 @@
                     <div class="flex items-center justify-between w-full">
                         <div class="flex-1">
                             <h4 class="card-title">{{ $title }}</h4>
-                            <p class="text-muted">{{ $subtitle }}</p>
+                            <p class="text-muted dark:text-white">{{ $subtitle }}</p>
                         </div>
 
                         <div class="flex gap-2">
@@ -94,7 +94,7 @@
                                         </tr>
                                     </thead>
                                     <tbody
-                                        class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700">
+                                        class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700 dark:text-white">
                                         @foreach ($items as $key => $item)
                                             <tr>
                                                 <td class="table-td">{{ $key + 1 }}</td>
@@ -176,7 +176,7 @@
                                         <!-- Name -->
                                         <div class="input-group">
                                             <label for="name"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Nama</label>
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Nama</label>
                                             <input type="text" id="name" name="name"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
                                                 placeholder="Masukkan nama" required>
@@ -185,7 +185,7 @@
                                         <!-- NIP -->
                                         <div class="input-group">
                                             <label for="nip"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">NIP</label>
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">NIP</label>
                                             <input type="text" id="nip" name="nip"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
                                                 placeholder="Masukkan NIP" required>
@@ -194,7 +194,7 @@
                                         <!-- Select -->
                                         <div class="input-group">
                                             <label for="select_id"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Jenis
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Jenis
                                                 Kegiatan</label>
                                             <select id="select_id" name="select_id"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
@@ -209,7 +209,7 @@
                                         <!-- Description -->
                                         <div class="input-group">
                                             <label for="description"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Deskripsi</label>
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Deskripsi</label>
                                             <textarea id="description" name="description"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
                                                 rows="4" placeholder="Enter deskripsi" required></textarea>
@@ -218,7 +218,7 @@
                                         <!-- File -->
                                         <div class="input-group">
                                             <label for="file"
-                                                class="text-sm font-Inter font-normal text-slate-900 block">Berkas
+                                                class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Berkas
                                                 Pendukung</label>
                                             <input type="file" id="file" name="file"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"

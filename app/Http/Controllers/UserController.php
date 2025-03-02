@@ -73,7 +73,7 @@ class UserController extends Controller
             DB::rollback();
         }
 
-        return redirect()->route('admin.user.create')->with(['color' => 'bg-success-500', 'message' => __('user.success.store')]);
+        return redirect()->route('admin.user.create')->with(['color' => 'bg-success-500', 'message' => __('Berhasil menambahkan data')]);
     }
 
     /**
@@ -111,7 +111,7 @@ class UserController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
             'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -128,7 +128,7 @@ class UserController extends Controller
 
             DB::commit();
 
-            return redirect()->route('admin.user.index')->with(['color' => 'bg-success-500', 'message' => __('user.success.store')]);
+            return redirect()->route('admin.user.index')->with(['color' => 'bg-success-500', 'message' => __('Berhasil mengubah data')]);
         } catch (Exception $e) {
             DB::rollback();
         }
@@ -140,6 +140,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->back();
+        return redirect()->back()->with(['color' => 'bg-success-500', 'message' => __('Berhasil menghapus data')]);
     }
 }
