@@ -3,7 +3,7 @@
 ## Instalasi
 1. Buka Terminal. (ex: git bash, cmd, dll)
 2. Clone repository ini menggunakan perintah `git clone https://github.com/widyasw/Data-IKU.git`
-3. Change direktory menggunakan perintah `cd fwrk-category-iku`
+3. Change direktory menggunakan perintah `cd Data-IKU`
 4. Masukkan perintah `composer install` untuk menginstall data vendor
 5. Masukkan perintah `cp .env.example .env` untuk menyalin file `.env`
 6. Masukkan perintah `php artisan key:generate` untuk mengenerate APP_KEY
