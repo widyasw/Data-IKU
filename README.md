@@ -1,8 +1,8 @@
-# Tugas Akhir Widya - Kategori Indikator Kinerja Utama
+# Tugas Akhir Widya - Data Indikator Kinerja Utama
 
 ## Instalasi
 1. Buka Terminal. (ex: git bash, cmd, dll)
-2. Clone repository ini menggunakan perintah `git clone https://github.com/stay-coding/fwrk-category-iku.git`
+2. Clone repository ini menggunakan perintah `git clone https://github.com/widyasw/Data-IKU.git`
 3. Change direktory menggunakan perintah `cd fwrk-category-iku`
 4. Masukkan perintah `composer install` untuk menginstall data vendor
 5. Masukkan perintah `cp .env.example .env` untuk menyalin file `.env`
