@@ -82,7 +82,7 @@
                                                 NIP
                                             </th>
                                             <th scope="col" class=" table-th ">
-                                                Jenis Kegiatan
+                                                Jenis Keluaran
                                             </th>
                                             <th scope="col" class=" table-th ">
                                                 Nama hasil kerja
@@ -98,7 +98,7 @@
                                             </th>
 
                                             <th scope="col" class=" table-th ">
-                                                Action
+                                                Aksi
                                             </th>
 
                                         </tr>
@@ -207,17 +207,17 @@
                                                 placeholder="Masukkan NIP" required>
                                         </div>
 
-                                        <!-- Jenis Kegiatan -->
+                                        <!-- Jenis Keluaran -->
                                         <div class="input-group">
                                             <label for="activity_type"
                                                 class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Jenis
-                                                Kegiatan</label>
+                                                Keluaran</label>
                                             <input type="text" id="activity_type" name="activity_type"
                                                 class="text-sm font-Inter font-normal text-slate-600 block w-full py-3 px-4 border border-slate-400 rounded-md focus:outline-none focus:ring-0 mt-1"
-                                                placeholder="Masukkan jenis kegiatan" required>
+                                                placeholder="Masukkan jenis keluaran" required>
                                         </div>
 
-                                        <!-- Jenis Kegiatan -->
+                                        <!-- Nama Hasil Kerja -->
                                         <div class="input-group">
                                             <label for="summary"
                                                 class="text-sm font-Inter font-normal text-slate-900 block dark:text-white">Nama Hasil
@@ -289,14 +289,20 @@
 
                 let id = $(this).data("id"); // Ambil ID dari atribut data-id
 
-                Swal.fire({
-                    title: "Are you sure?",
-                    text: "This action cannot be undone!",
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: "btn btn-primary",
+                        cancelButton: "btn btn-danger"
+                    },
+                });
+                swalWithBootstrapButtons.fire({
+                    title: "Hapus data IKU 5?",
+                    text: "Apakah Anda yakin ingin melakukan ini?",
                     icon: "warning",
                     showCancelButton: true,
-                    confirmButtonColor: "#d33",
-                    cancelButtonColor: "#3085d6",
-                    confirmButtonText: "Yes, delete it!"
+                    confirmButtonText: "Konfirmasi",
+                    cancelButtonText: "Batal",
+                    reverseButtons: true
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $(`#delete-form-${id}`).submit(); // Submit form sesuai ID

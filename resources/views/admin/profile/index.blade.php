@@ -17,7 +17,7 @@
                     @method('PUT')
                     <div class="input-area relative">
                         <label for="name" class="form-label">Name<span class="text-red-500">*</span></label>
-                        <input type="text" id="name" name="name" class="form-control" placeholder="Masukkan Name"
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Masukkan Nama"
                             value="{{ $user->name }}">
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
@@ -28,15 +28,15 @@
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
                     <div class="input-area relative">
-                        <label for="password" class="form-label">Password</label>
+                        <label for="password" class="form-label">Kata sandi baru</label>
                         <input type="password" id="password" name="password" class="form-control"
-                            placeholder="Masukkan Password">
+                            placeholder="Masukkan Kata Sandi">
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
                     <div class="input-area relative">
-                        <label for="password_confirmation" class="form-label">Password Confirmation</label>
+                        <label for="password_confirmation" class="form-label">Konfirmasi Kata Sandi</label>
                         <input type="password" id="password_confirmation" name="password_confirmation" class="form-control"
-                            placeholder="Masukkan Password Confirmation">
+                            placeholder="Masukkan Konfirmasi Kata Sandi">
                         <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                     </div>
                     <button class="btn inline-flex justify-center btn-dark">Submit</button>

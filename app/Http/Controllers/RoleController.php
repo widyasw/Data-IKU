@@ -19,7 +19,7 @@ class RoleController extends Controller
             ['Role', true, route('admin.role.index')],
             ['Index', false],
         ];
-        $title = 'All Roles';
+        $title = 'Hak Akses';
         $roles = Role::all();
         return view('admin.role.index', compact('breadcrumbs', 'title', 'roles'));
     }
@@ -33,7 +33,7 @@ class RoleController extends Controller
             ['Role', true, route('admin.role.index')],
             ['Create', false],
         ];
-        $title = 'Create Role';
+        $title = 'Tambah Role';
         $permissionModules = Permission::all()->groupBy('module_name');
 
         return view('admin.role.create', compact('breadcrumbs', 'title', 'permissionModules'));

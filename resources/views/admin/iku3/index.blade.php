@@ -98,7 +98,7 @@
                                             </th>
 
                                             <th scope="col" class=" table-th ">
-                                                Action
+                                                Aksi
                                             </th>
 
                                         </tr>
@@ -307,14 +307,20 @@
 
                 let id = $(this).data("id"); // Ambil ID dari atribut data-id
 
-                Swal.fire({
-                    title: "Are you sure?",
-                    text: "This action cannot be undone!",
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: "btn btn-primary",
+                        cancelButton: "btn btn-danger"
+                    },
+                });
+                swalWithBootstrapButtons.fire({
+                    title: "Hapus data IKU 3?",
+                    text: "Apakah Anda yakin ingin melakukan ini?",
                     icon: "warning",
                     showCancelButton: true,
-                    confirmButtonColor: "#d33",
-                    cancelButtonColor: "#3085d6",
-                    confirmButtonText: "Yes, delete it!"
+                    confirmButtonText: "Konfirmasi",
+                    cancelButtonText: "Batal",
+                    reverseButtons: true
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $(`#delete-form-${id}`).submit(); // Submit form sesuai ID

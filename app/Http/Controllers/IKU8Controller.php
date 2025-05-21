@@ -172,7 +172,7 @@ class IKU8Controller extends Controller
 
         // header untuk export excel
         $headers = [
-            'No', 'Nama program studi', 'Akreditasi BAN-PT', 'Masa Berlaku', 'Akreditasi Internasional', 'Masa Berlaku', 'Berkas Pendukung'
+            'No', 'Nama program studi', 'Akreditasi BAN-PT', 'Masa Berlaku Akreditasi BAN-PT', 'Akreditasi Internasional', 'Masa Berlaku Akreditasi Internasional', 'Berkas Pendukung'
         ];
 
         // ambil data dan mapping untuk diexport (nantinya bakal ke export sesuai index)

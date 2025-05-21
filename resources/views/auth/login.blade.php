@@ -35,7 +35,7 @@
                     <div class="auth-box h-full flex flex-col justify-center">
                         @include('auth.partials.mobile-logo')
                         <div class="text-center 2xl:mb-10 mb-4">
-                            <h4 class="font-medium">Sign in</h4>
+                            <h4 class="font-medium">Log in</h4>
                             <div class="text-slate-500 text-base">
                                 Indikator Kinerja Utama (IKU) Program Studi D4 Manajemen Informatika
                             </div>
@@ -54,17 +54,17 @@
                             <div class="fromGroup">
                                 <div class="relative ">
                                     <input type="password" name="password" class="form-control py-2"
-                                        placeholder="Password" value="{{ old('password') }}">
+                                        placeholder="Kata Sandi" value="{{ old('password') }}">
                                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                 </div>
                             </div>
                             <div class="flex justify-between">
                                 <label class="flex items-center cursor-pointer">
                                     <input type="checkbox" class="hiddens" name="remember">
-                                    <span class="text-slate-500 dark:text-slate-400 text-sm leading-6 capitalize ml-2">Remember Me!</span>
+                                    <span class="text-slate-500 dark:text-slate-400 text-sm leading-6 capitalize ml-2">Ingat saya!</span>
                                 </label>
                             </div>
-                            <button class="btn btn-dark block w-full text-center">Sign in</button>
+                            <button class="btn btn-dark block w-full text-center">Log in</button>
                         </form>
                         <!-- END: Login Form -->
                     </div>

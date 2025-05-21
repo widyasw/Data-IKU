@@ -5,33 +5,23 @@
         <div class="flex justify-between items-center h-full">
             <div class="flex items-center md:space-x-4 space-x-2 xl:space-x-0 rtl:space-x-reverse vertical-box">
                 <a href="index.html" class="mobile-logo xl:hidden inline-block">
-                    <img src="{{ asset('backend/images/logo/logo-c.svg') }}" class="black_logo" alt="logo">
-                    <img src="{{ asset('backend/images/logo/logo-c-white.svg') }}" class="white_logo" alt="logo">
+                    <img src="{{ asset('backend/images/logo/logo-header.png') }}" class="black_logo" alt="logo">
+                    <img src="{{ asset('backend/images/logo/logo-header-dark.png') }}" class="white_logo" alt="logo">
                 </a>
                 <button class="smallDeviceMenuController hidden md:inline-block xl:hidden">
                     <iconify-icon
                         class="leading-none bg-transparent relative text-xl top-[2px] text-slate-900 dark:text-white"
-                        icon="heroicons-outline:menu-alt-3"></iconify-icon>
+                        icon="heroicons-outline:menu"></iconify-icon>
                 </button>
                 <h5>{{ $title ?? 'Dashboard'}}</h5>
             </div>
             <!-- end vertcial -->
             <div class="items-center space-x-4 rtl:space-x-reverse horizental-box">
-                <a href="index.html">
-                    <span class="xl:inline-block hidden">
-                        <img src="{{ asset('backend/images/logo/logo.svg') }}" class="black_logo" alt="logo">
-                        <img src="{{ asset('backend/images/logo/logo-white.svg') }}" class="white_logo" alt="logo">
-                    </span>
-                    <span class="xl:hidden inline-block">
-                        <img src="{{ asset('backend/images/logo/logo-c.svg') }}" class="black_logo" alt="logo">
-                        <img src="{{ asset('backend/images/logo/logo-c-white.svg') }}" class="white_logo"
-                            alt="logo">
-                    </span>
-                </a>
+
                 <button class="smallDeviceMenuController  open-sdiebar-controller xl:hidden inline-block">
                     <iconify-icon
                         class="leading-none bg-transparent relative text-xl top-[2px] text-slate-900 dark:text-white"
-                        icon="heroicons-outline:menu-alt-3"></iconify-icon>
+                        icon="heroicons-outline:menu"></iconify-icon>
                 </button>
 
             </div>
@@ -51,16 +41,6 @@
                     </button>
                 </div>
                 <!-- END: TOggle Theme -->
-
-                <!-- BEGIN: gray-scale Dropdown -->
-                <div>
-                    <button id="grayScale"
-                        class="lg:h-[32px] lg:w-[32px] lg:bg-slate-100 lg:dark:bg-slate-900 dark:text-white text-slate-900 cursor-pointer rounded-full text-[20px] flex flex-col items-center justify-center">
-                        <iconify-icon class="text-slate-800 dark:text-white text-xl" icon="mdi:paint-outline">
-                        </iconify-icon>
-                    </button>
-                </div>
-                <!-- END: gray-scale Dropdown -->
 
                 <!-- BEGIN: Profile Dropdown -->
                 <!-- Profile DropDown Area -->
@@ -121,7 +101,7 @@
                 <!-- END: Header -->
                 <button class="smallDeviceMenuController md:hidden block leading-0">
                     <iconify-icon class="cursor-pointer text-slate-900 dark:text-white text-2xl"
-                        icon="heroicons-outline:menu-alt-3"></iconify-icon>
+                        icon="heroicons-outline:menu"></iconify-icon>
                 </button>
                 <!-- end mobile menu -->
             </div>

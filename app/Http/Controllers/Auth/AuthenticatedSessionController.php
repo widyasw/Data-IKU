@@ -17,8 +17,8 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        return view('auth.login', ['title' => 'Login']);
-    }
+        return view('auth.login', ['title' => 'Login - Indikator Kinerja Utama (IKU)']);
+    } 
 
     /**
      * Handle an incoming authentication request.

@@ -24,7 +24,7 @@ class UserController extends Controller
             ['User', true, route('admin.user.index')],
             ['Index', false],
         ];
-        $title = 'All Users';
+        $title = 'User';
         $users = User::latest()->get();
         return view('admin.user.index', compact('breadcrumbs', 'title', 'users'));
     }
@@ -38,7 +38,7 @@ class UserController extends Controller
             ['User', true, route('admin.user.index')],
             ['Create', false],
         ];
-        $title = 'Create User';
+        $title = 'Tambah User';
         $roles = Role::all();
         return view('admin.user.create', compact('breadcrumbs', 'title', 'roles'));
     }

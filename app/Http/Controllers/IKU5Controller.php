@@ -22,7 +22,7 @@ class IKU5Controller extends Controller
             ['Index', false],
         ];
         $title = 'Data Indikator Kinerja Utama 5';
-        $subtitle = ' Jumlah keluaran penelitian dan pengabdian kepada masyarakat yang berhasil mendapat rekognisi internasional atau diterapkan oleh masyarakat.';
+        $subtitle = 'Penelitian dan pengabdian kepada masyarakat yang berhasil mendapat rekognisi internasional atau diterapkan oleh masyarakat.';
         $items = IKU5::with('select_list')->latest()->get();
 
         return view('admin.iku5.index', compact('breadcrumbs', 'title', 'subtitle', 'items'));
@@ -138,10 +138,10 @@ class IKU5Controller extends Controller
         $isPreview = $request->preview ? true : false;
 
         $title = 'Data Indikator Kinerja Utama 5';
-        $subtitle = 'Jumlah keluaran penelitian dan pengabdian kepada masyarakat yang berhasil mendapat rekognisi internasional atau diterapkan oleh masyarakat.';
+        $subtitle = 'Penelitian dan pengabdian kepada masyarakat yang berhasil mendapat rekognisi internasional atau diterapkan oleh masyarakat.';
 
         $headers = [
-            'No', 'Nama', 'NIP', 'Jenis Kegiatan', 'Nama hasil kerja', 'Deskripsi', 'Tempat', 'Berkas Pendukung'
+            'No', 'Nama', 'NIP', 'Jenis Keluaran', 'Nama hasil kerja', 'Deskripsi', 'Tempat', 'Berkas Pendukung'
         ];
 
         $dataIKU = IKU5::query()->with('select_list')->get()->map(function ($item, $key) {

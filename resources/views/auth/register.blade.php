@@ -85,7 +85,7 @@
                             </span>
                             <a href="{{ route('login') }}"
                                 class="text-slate-900 dark:text-white font-medium hover:underline">
-                                Sign In
+                                Log In
                             </a>
                         </div>
                     </div>

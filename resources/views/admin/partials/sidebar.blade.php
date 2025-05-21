@@ -28,7 +28,6 @@
             $route = Route::currentRouteName();
         @endphp
         <ul class="sidebar-menu">
-            <li class="sidebar-menu-title">Menu</li>
             <li class="">
                 <a href="{{ route('admin.dashboard') }}"
                     class="navItem {{ $route == 'admin.dashboard' ? 'active' : '' }}">
@@ -38,6 +37,7 @@
                     </span>
                 </a>
             </li>
+            <li class="sidebar-menu-title">Menu</li>
             <li class="">
                 @can('iku 1 lihat')
                     <a href="{{ route('admin.iku-1.index') }}"
@@ -113,7 +113,7 @@
                 @endcan
             </li>
 
-            <li class="sidebar-menu-title">Admin</li>
+            <li class="sidebar-menu-title">Pengaturan</li>
             <li class="">
                 @can('user lihat')
                     <a href="{{ route('admin.user.index') }}"
