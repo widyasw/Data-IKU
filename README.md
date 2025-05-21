@@ -1,9 +1,4 @@
-# Skripsi - Kategori Indikator Kinerja Utama
-
-## Username Password Role
-| Username | Password | Role |
-| ----------- | ----------- | ----------- |
-| admin@gmail.com | password | Admin |
+# Tugas Akhir Widya - Kategori Indikator Kinerja Utama
 
 ## Instalasi
 1. Buka Terminal. (ex: git bash, cmd, dll)
